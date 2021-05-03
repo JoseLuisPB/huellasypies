@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="autor" content="José Luis Peñuela Berenguer" />
+        <link href="{{ asset('css/estilos_globales.css') }}" rel="stylesheet" />
+        <!-- BOOTSTRAP -->
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+            integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+            crossorigin="anonymous"
+        />
+        <link rel="icon" href="./imagenes/favicon.ico" />
+        <title>{% block title %} Inicio {% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </head>
+
+    <body>
+        <!-- Barra de navegación -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top align-items-stretch">
+            <!-- Texto barra de navegación -->
+            <h1 class="text-white ml-5">Huellas y pies</h1>
+            <!-- Botón de toggle -->
+            <button
+            class="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#collapse_target"
+            >
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Links barra de navegación -->
+            <div
+            class="collapse navbar-collapse justify-content-end row-fluid mr-5"
+            id="collapse_target"
+            >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item text-center">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                    ><i class="fas fa-home text-white"
+                    ><span class="pl-1">Inicio</span></i
+                    ></a
+                >
+                </li>
+                <li class="nav-item text-center">
+                <a class="nav-link" href="lista_mascotas.html"
+                    ><i class="fas fa-paw text-white-50"
+                    ><span class="pl-1">Mascotas</span></i
+                    ></a
+                >
+                </li>
+                <li class="nav-item text-center">
+                <a class="nav-link" href="noticias.html"
+                    ><i class="fas fa-newspaper text-white-50"
+                    ><span class="pl-1">Noticias</span></i
+                    ></a
+                >
+                </li>
+                <li class="nav-item text-center">
+                <a class="nav-link" href="panel_control.html"
+                    ><i class="fas fa-cogs text-white-50"
+                    ><span class="pl-1">Panel de control</span></i
+                    ></a
+                >
+                </li>
+                <li class="nav-item text-center">
+                <a class="nav-link" href="login.html"
+                    ><i class="fas fa-sign-in-alt text-white-50"
+                    ><span class="pl-1">Iniciar sesión</span></i
+                    ></a
+                >
+                </li>
+            </ul>
+            </div>
+        </nav>
+        <!-- Bloque con el contenido del main -->
+        {% block main %}
+            <h1>Hello World</h1>
+        {% endblock %}
+
+        <!-- Bloque con el contenido del footer -->
+        {% block footer %}{% endblock %} 
+
+        <!-- Scripts opcionales para que bootstrap funcione como se espera -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
+
