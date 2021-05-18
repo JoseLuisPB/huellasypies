@@ -47,4 +47,10 @@ class NoticiaRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function ultimas_noticias(): array { 
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT news FROM App\Entity\Noticia news ORDER BY news.id DESC ')->setMaxResults( 2 );
+        return $query->getResult();
+    }
 }
