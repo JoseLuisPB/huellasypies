@@ -5,6 +5,9 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
 
+    carpeta_noticias: '%kernel.project_dir%/public/imagenes/noticias'
+    carpeta_mascotas: '%kernel.project_dir%/public/imagenes/mascotas'
+
 services:
     # default configuration for services in *this* file
     _defaults:

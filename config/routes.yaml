@@ -1,3 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# Ruta creada para salir de la aplicación y así no crear ningún controlador
+logout: 
+  path: /logout

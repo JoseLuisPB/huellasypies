@@ -2,6 +2,11 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
+        user_provider: 
+            entity:
+                # Entidad y atributo de la misma que se utiliza para hacer log in 
+                class: App\Entity\Usuario 
+                property: login
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -10,7 +15,15 @@ security:
             anonymous: true
             lazy: true
             provider: users_in_memory
-
+            form_login:
+                # Para mostrar el formulario y verificar el log in utilizaremos la misma ruta. Los datos de los usuarios provienen del user_provider indicado antes
+                provider: user_provider 
+                login_path: login 
+                check_path: login
+            # Indicamos que al salir de la aplicación (ruta logout), se dirija a la página raiz (/)
+            logout: 
+                path: /logout 
+                target: /
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
