@@ -47,4 +47,12 @@ class MascotaRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function mascotas_usuario($usuario): array { 
+        $entityManager = $this->getEntityManager();
+        # Creación de la query con lenguaje DQL, IMPORTANTE usar los alias e indicar en el from el namespace 
+        $query = $entityManager->createQuery('SELECT mas.id, mas.nombre, est.estado, est.id AS id_estado FROM App\Entity\Mascota mas, App\Entity\EstadoMascota est WHERE est.id = mas.estado AND mas.usuario = :duenyo ');
+        # Ajustamos el párametro de la query con el parámetro que le hemos pasado a la función 
+        return $query->setParameter('duenyo', $usuario)->getResult();
+    }
 }
