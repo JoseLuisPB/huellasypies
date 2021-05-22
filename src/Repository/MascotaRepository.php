@@ -55,4 +55,16 @@ class MascotaRepository extends ServiceEntityRepository
         # Ajustamos el párametro de la query con el parámetro que le hemos pasado a la función 
         return $query->setParameter('duenyo', $usuario)->getResult();
     }
+
+    public function ultimas_mascotas(): array { 
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) ORDER BY pet.id DESC ')->setMaxResults( 3 );
+        return $query->getResult();
+    }
+
+    public function mascotas_disponibles(): array{
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) ');
+        return $query->getResult();
+    }
 }

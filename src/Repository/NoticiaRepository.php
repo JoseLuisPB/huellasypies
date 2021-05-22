@@ -48,9 +48,23 @@ class NoticiaRepository extends ServiceEntityRepository
     }
     */
 
+    public function noticias_usuario($usuario): array { 
+        $entityManager = $this->getEntityManager();
+        # Creación de la query con lenguaje DQL, IMPORTANTE usar los alias e indicar en el from el namespace 
+        $query = $entityManager->createQuery('SELECT noticias FROM App\Entity\Noticia noticias WHERE noticias.autor = :usuario ');
+        # Ajustamos el párametro de la query con el parámetro que le hemos pasado a la función 
+        return $query->setParameter('usuario', $usuario)->getResult();
+    }
+
     public function ultimas_noticias(): array { 
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery('SELECT news FROM App\Entity\Noticia news ORDER BY news.id DESC ')->setMaxResults( 2 );
+        return $query->getResult();
+    }
+
+    public function lista_noticias(): array { 
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT news FROM App\Entity\Noticia news WHERE news.estado = 2 ORDER BY news.id DESC ');
         return $query->getResult();
     }
 }
