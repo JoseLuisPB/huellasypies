@@ -1,63 +1,63 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %} 
-<link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
 {% endblock %}
 {% block main %}
       <main >
-        <div class="container" style="background-color:#fef2e4;"><!-- Inicio del contenedor de la web-->
+        <div class="container"><!-- Inicio del contenedor de la web-->
           <!-- Imagen superior -->
           <div class="row">
-            <img class="w-100 img-fluid" src="{{ asset('imagenes/web/hada2.jpg') }}" style="max-height: 450px;" alt="inicio" />
+            <img class="w-100 img-fluid imagen_inicio" src="{{ asset('imagenes/web/hada2.jpg') }}" alt="inicio" />
           </div>
           <!-- Quote -->
           <div class="row">
-            <blockquote class="d-flex justify-content-center align-items-center w-100 mb-0" >
-              <div class="py-3">
-                <h6 style="font-size: 25px;">Hasta que no hayas amado a un animal una parte de tu alma permanecerá dormida</h6>
-                <p style="font-size:18px; text-align: right;"> Anatole France - Escritor francés</p>
+            <blockquote class="d-flex justify-content-center align-items-center w-100 mb-0 cita_inicio" >
+              <div class="p-3">
+                <h6 class="text-md-left text-center">Hasta que no hayas amado a un animal una parte de tu alma permanecerá dormida</h6>
+                <p class="text-md-right text-center"> Anatole France - Escritor francés</p>
               </div>
             </blockquote>
           </div>
           <!-- Sección con la mision de la página web -->
           <section class="row">
-            <div class="col-lg-6 col-sm-12 bg-danger p-0">
+            <div class="col-lg-6 col-sm-12 p-0">
               <img src="{{ asset('imagenes/web/inicio.jpg') }}" class="img-fluid w-100" />
             </div>
-            <div class="col-lg-6 col-sm-12 bg-dark d-flex align-items-center">
+            <div class="col-lg-6 col-sm-12 d-flex align-items-center mision">
               <div class="align-items-center">
-                <h2 style=" text-align: center;">Misión</h2>
-                <p style="">
-                  Desde huellasypies creemos que la mejor compañía que existe es la de un animal. Por ello hemos creado este sitio para que los animales de las protectoras tengan más visibilidad y que
+                <h2 class="inicio_titulos">Misión</h2>
+                <p class="inicio_texto">
+                  Desde huellas y pies creemos que la mejor compañía que existe es la de un animal. Por ello hemos creado este sitio para que los animales de las protectoras tengan más visibilidad y que
                   los animales que los particulares ya no pueden cuidar encuentren un nuevo hogar y hagan felices a sus nuevos dueños.
                 </p>
               </div>
             </div>
           </section>
           <!-- Sección con las nuevas mascotas -->
-          <section class="row">
+          <section class="row nuevas_mascotas">
             <div class="col-12">
-              <h1  style="color:#f1f1f1; font-size: 41px;">Buscando un nuevo hogar</h1>
+              <h1>Nuevas mascotas</h1>
               <div class="row d-flex justify-content-around pb-2">
-                {% for elemento in mascotas %}
-                  <div class="card ml-5 mt-2" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('imagenes/mascotas/' ~ elemento.foto) }}" alt="{{elemento.nombre}}">
-                    <a href="detalle_mascota.html" class="btn btn-light w-100 text-center">{{elemento.nombre}}</a>
+                {% for item in mascotas %}
+                  <div class="card mt-2 inicio_carta">
+                    <img class="card-img-top" src="{{ asset('imagenes/mascotas/' ~ item.foto) }}" alt="{{item.nombre}}">
+                    <a href="{{path('detalle_mascota',{'id' : item.id })}}" class="inicio_btn_mascota w-100 text-center">{{item.nombre}}</a>
                   </div>
                 {% endfor %}
               </div>
             </div>
           </section>
         <!-- Seccíón que contiene las noticias -->
-          <section class="row">
+          <section class="row nuevas_noticias">
             <div class="col-12">
-              <h1  style="color:#f1f1f1; font-size: 41px;">Últimas noticias</h1>
+              <h1>Últimas noticias</h1>
               <div class ="row">
-                {% for elemento in noticias %}
+                {% for item in noticias %}
                   <article class="col-lg-6 col-md-6 col-sm-12">
-                  <img class="img-fluid" src="{{ asset('imagenes/noticias/') ~ elemento.foto }}" style="max-height: 275px; width: 100%;" />
-                  <h2 class="text-center">{{ elemento.titulo }}</h2>
-                  <p class="text-center">{{ elemento.publicada|date("d/m/Y") }}</p>
-                  <p>{{elemento.resumen}}<a href="detalle_noticia.html">Leer más</a> </p>          
+                  <img class="img-fluid" src="{{ asset('imagenes/noticias/') ~ item.foto }}" style="max-height: 275px; width: 100%;" />
+                  <h2 class="text-center inicio_titulos">{{ item.titulo }}</h2>
+                  <p class="text-center inicio_texto">publicada por {{item.autor.nombre}} el {{ item.publicada|date("d/m/Y") }}</p>
+                  <p class="inicio_resumen">{{item.resumen}}<a class="leer_mas" href="{{path('detalle_noticia',{'id' : item.id })}}"> Leer más &gt;&gt;</a> </p>          
                 </article>
                 {% endfor %}
               </div>
@@ -68,26 +68,26 @@
       </main>
 {% endblock %}
 {% block footer %}
-      <footer class=" pt-1">
+      <footer class=" py-1">
         <div class="d-flex flex-wrap justify-content-around">
-          <div class="p-2" style="min-width: 305px;">
+          <div class="p-2 footer_tamanyo_minimo">
             <h3>Contacta con nosotros</h3>
             <h6>Avenida de Altea, 2</h6>
             <h6>03530 La Nucía</h6>
             <h6>Email: joseluis@huellasypies.daw</h6>
           </div>
-          <div class="p-2" style="min-width: 305px;">
+          <div class="p-2 footer_tamanyo_minimo">
             <h3>Mapa del sitio</h3>
-            <h6>Inicio</h6>
-            <h6>Mascotas</h6>
-            <h6>Noticias</h6>
+            <h6><a href="{{path('inicio')}}">Inicio</a></h6>
+            <h6><a href="{{path('pagina_mascotas')}}">Mascotas</a></h6>
+            <h6><a href="{{path('pagina_noticias')}}">Noticias</a></h6>
           </div>
-          <div class="p-2" style="min-width: 305px;">
+          <div class="p-2 footer_tamanyo_minimo">
             <h3>Síguenos en las RRSS</h3>
-            <div class="row">
-              <img class=" col-4 img-fluid" src="{{ asset('imagenes/web/facebook.png') }}" style="max-height: 80px; max-width: 80px;" />
-              <img class=" col-4 img-fluid" src="{{ asset('imagenes/web/instagram.png') }}" style="max-height: 80px; max-width: 80px;" />
-              <img class=" col-4 img-fluid" src="{{ asset('imagenes/web/twitter.png') }}" style="max-height: 80px; max-width: 80px;" />
+            <div class="row justify-content-center">
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/facebook.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/instagram.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/twitter.png') }}" />
             </div>
           </div>
         </div>
