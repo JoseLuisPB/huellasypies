@@ -58,13 +58,87 @@ class MascotaRepository extends ServiceEntityRepository
 
     public function ultimas_mascotas(): array { 
         $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) ORDER BY pet.id DESC ')->setMaxResults( 3 );
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = true ORDER BY pet.id DESC ')->setMaxResults( 3 );
         return $query->getResult();
     }
 
-    public function mascotas_disponibles(): array{
+    public function mascotas_disponibles_antiguas(): array{
         $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) ');
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = true ORDER BY pet.fecha_alta ASC ');
         return $query->getResult();
+    }
+
+    public function mascotas_disponibles_nuevas(): array{
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = true ORDER BY pet.fecha_alta DESC ');
+        return $query->getResult();
+    }
+
+    public function pendiente_aprobar(): array{
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = false ');
+        return $query->getResult();
+    }
+
+    public function filtro_mascota($antiguedad, $animal, $provincia): array{
+
+        $entityManager = $this->getEntityManager();
+
+        # Comprobamos el tipo de animal
+        if($animal == 'todas'){
+            if($provincia == 'todas'){
+                if($antiguedad == 'nueva'){
+                    $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = true ORDER BY pet.fecha_alta DESC');
+                }
+                else{
+                    $query = $entityManager->createQuery('SELECT pet FROM App\Entity\Mascota pet WHERE pet.estado IN (1,2,3) AND pet.aprobada = true ORDER BY pet.fecha_alta ASC');
+                }
+                return $query->getResult();
+            }
+            else{ // Provincia específica
+                if($antiguedad == 'nueva'){
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\Usuario user 
+                        WHERE pet.usuario = user.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND user.provincia = :provincia 
+                        ORDER BY pet.fecha_alta DESC');
+                }
+                else{
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\Usuario user 
+                        WHERE pet.usuario = user.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND user.provincia = :provincia 
+                        ORDER BY pet.fecha_alta ASC');
+                }
+                return $query->setParameter('provincia', $provincia)->getResult();
+            }
+        }
+        else{ // Animal especifico
+            if($provincia == 'todas'){
+                if($antiguedad == 'nueva'){
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\TipoMascota tipo
+                        WHERE pet.tipo = tipo.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND tipo.tipo = :tipo ORDER BY pet.fecha_alta DESC ');
+                    
+                }
+                else{
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\TipoMascota tipo
+                        WHERE pet.tipo = tipo.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND tipo.tipo = :tipo ORDER BY pet.fecha_alta ASC ');
+                }
+                return $query->setParameter(':tipo', $animal)->getResult();
+            }
+            else{ // Provincia específica
+                if($antiguedad == 'nueva'){
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\TipoMascota tipo, App\Entity\Usuario user 
+                        WHERE pet.tipo = tipo.id AND pet.usuario = user.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND tipo.tipo = :tipo AND user.provincia = :provincia ORDER BY pet.fecha_alta DESC ');
+                }
+                else{
+                    $query = $entityManager->createQuery(
+                        'SELECT pet FROM App\Entity\Mascota pet, App\Entity\TipoMascota tipo, App\Entity\Usuario user 
+                        WHERE pet.tipo = tipo.id AND pet.usuario = user.id AND pet.estado IN (1,2,3) AND pet.aprobada = true AND tipo.tipo = :tipo AND user.provincia = :provincia ORDER BY pet.fecha_alta ASC ');
+                }
+                return $query->setParameter(':tipo', $animal)->setParameter('provincia', $provincia)->getResult();
+            }
+        }
     }
 }
