@@ -38,16 +38,6 @@ class Mascota
     private $requisitos;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $fecha_alta;
-
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $fecha_adopcion;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $vacunado;
@@ -84,6 +74,23 @@ class Mascota
      * @ORM\JoinColumn(nullable=false)
      */
     private $usuario;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $fecha_alta;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $fecha_adopcion;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $aprobada;
+
 
     public function getId(): ?int
     {
@@ -134,30 +141,6 @@ class Mascota
     public function setRequisitos(?string $requisitos): self
     {
         $this->requisitos = $requisitos;
-
-        return $this;
-    }
-
-    public function getFechaAlta(): ?string
-    {
-        return $this->fecha_alta;
-    }
-
-    public function setFechaAlta(string $fecha_alta): self
-    {
-        $this->fecha_alta = $fecha_alta;
-
-        return $this;
-    }
-
-    public function getFechaAdopcion(): ?string
-    {
-        return $this->fecha_adopcion;
-    }
-
-    public function setFechaAdopcion(string $fecha_adopcion): self
-    {
-        $this->fecha_adopcion = $fecha_adopcion;
 
         return $this;
     }
@@ -245,5 +228,44 @@ class Mascota
 
         return $this;
     }
+
+    public function getFechaAlta(): ?string
+    {
+        return $this->fecha_alta;
+    }
+
+    public function setFechaAlta(string $fecha_alta): self
+    {
+        $this->fecha_alta = $fecha_alta;
+
+        return $this;
+    }
+
+    public function getFechaAdopcion(): ?string
+    {
+        return $this->fecha_adopcion;
+    }
+
+    public function setFechaAdopcion(?string $fecha_adopcion): self
+    {
+        $this->fecha_adopcion = $fecha_adopcion;
+
+        return $this;
+    }
+
+    public function getAprobada(): ?bool
+    {
+        return $this->aprobada;
+    }
+
+    public function setAprobada(bool $aprobada): self
+    {
+        $this->aprobada = $aprobada;
+
+        return $this;
+    }
+
+
+
 
 }

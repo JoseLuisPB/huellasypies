@@ -33,11 +33,6 @@ class Noticia
     private $foto;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $fecha_publicacion;
-
-    /**
      * @ORM\ManyToOne(targetEntity=EstadoNoticia::class)
      * @ORM\JoinColumn(nullable=false)
      */
@@ -49,6 +44,17 @@ class Noticia
      */
     private $autor;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $resumen;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $publicada;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -90,18 +96,6 @@ class Noticia
         return $this;
     }
 
-    public function getFechaPublicacion(): ?\DateTimeInterface
-    {
-        return $this->fecha_publicacion;
-    }
-
-    public function setFechaPublicacion(\DateTimeInterface $fecha_publicacion): self
-    {
-        $this->fecha_publicacion = $fecha_publicacion;
-
-        return $this;
-    }
-
     public function getEstado(): ?EstadoNoticia
     {
         return $this->estado;
@@ -125,4 +119,29 @@ class Noticia
 
         return $this;
     }
+
+    public function getResumen(): ?string
+    {
+        return $this->resumen;
+    }
+
+    public function setResumen(string $resumen): self
+    {
+        $this->resumen = $resumen;
+
+        return $this;
+    }
+
+    public function getPublicada(): ?string
+    {
+        return $this->publicada;
+    }
+
+    public function setPublicada(string $publicada): self
+    {
+        $this->publicada = $publicada;
+
+        return $this;
+    }
+
 }

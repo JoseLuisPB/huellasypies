@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+// Import para comprobar que el valor del campo no está ya en la base de datos
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UsuarioRepository::class)
+ * @UniqueEntity(fields={"email"}, message="El email ya existe")
  */
-class Usuario
+class Usuario implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id
@@ -19,21 +24,25 @@ class Usuario
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $poblacion;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $provincia;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $password;
 
@@ -43,17 +52,20 @@ class Usuario
     private $activo;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email( message = "El email '{{ value }}' no es válido")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $telefono;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $fecha_alta;
 
@@ -63,15 +75,19 @@ class Usuario
     private $reiniciar_password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Rol::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $direccion;
+
+    /**
+     * @ORM\Column(type="string", length=255)
      */
     private $rol;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
-    private $direccion;
+    private $login;
 
     public function getId(): ?int
     {
@@ -167,7 +183,7 @@ class Usuario
         return $this->fecha_alta;
     }
 
-    public function setFechaAlta(\DateTimeInterface $fecha_alta): self
+    public function setFechaAlta(string $fecha_alta): self
     {
         $this->fecha_alta = $fecha_alta;
 
@@ -186,18 +202,6 @@ class Usuario
         return $this;
     }
 
-    public function getRol(): ?Rol
-    {
-        return $this->rol;
-    }
-
-    public function setRol(?Rol $rol): self
-    {
-        $this->rol = $rol;
-
-        return $this;
-    }
-
     public function getDireccion(): ?string
     {
         return $this->direccion;
@@ -206,6 +210,54 @@ class Usuario
     public function setDireccion(?string $direccion): self
     {
         $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    public function getRol(): ?string
+    {
+        return $this->rol;
+    }
+
+    public function setRol(string $rol): self
+    {
+        $this->rol = $rol;
+
+        return $this;
+    }
+
+    public function getUserName()
+    {
+        return $this->login;
+    }
+    public function getSalt()
+    {
+        return null;
+    }
+    public function getRoles()
+    {
+        return array($this->rol);
+    }
+        public function eraseCredentials()
+    {
+    }
+    public function serialize() 
+    { 
+        return serialize(array($this->id, $this->login, $this->password)); 
+    } 
+    public function unserialize($datos_serializados) 
+    { 
+        list($this->id, $this->login, $this->password) = unserialize($datos_serializados, array('allowed_classes'=> false)); 
+    }
+
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(string $login): self
+    {
+        $this->login = $login;
 
         return $this;
     }
