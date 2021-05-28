@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %} Noticias {% endblock %}
+{% block stylesheets %} 
+    <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+{% endblock %}
+{% block main %}
+    <main>
+    <div class="container">
+        <section>
+            <h1 class="text-center">Hemeroteca</h1>
+            <div class ="row col-12 ">
+                {% for elemento in noticias %}
+                    <article class="col-lg-6 col-md-6 col-sm-12 pb-3">
+                    <a href="{{path('detalle_noticia',{'id' : elemento.id })}}">
+                        <img class="img-fluid" src="{{ asset('imagenes/noticias/') ~ elemento.foto }}" style="max-height: 275px; width: 100%;" />
+                        <h2 class="text-center inicio_titulos">{{ elemento.titulo }}</h2>
+                        <p class="text-center inicio_texto">publicada por {{elemento.autor.nombre}} el {{ elemento.publicada|date("d/m/Y") }}</p>
+                        <p class="inicio_resumen">{{elemento.resumen | raw}} </p>     
+                    </a>
+                    </article>
+                {% endfor %}
+        </section>
+    </div>
+    </main>
+{% endblock %}
+{% block footer %}
+      <footer class=" py-1">
+        <div class="d-flex flex-wrap justify-content-around">
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Contacta con nosotros</h3>
+            <h6>Avenida de Altea, 2</h6>
+            <h6>03530 La Nucía</h6>
+            <h6>Email: joseluis@huellasypies.daw</h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Mapa del sitio</h3>
+            <h6><a href="{{path('inicio')}}">Inicio</a></h6>
+            <h6><a href="{{path('pagina_mascotas')}}">Mascotas</a></h6>
+            <h6><a href="{{path('pagina_noticias')}}">Noticias</a></h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Síguenos en las RRSS</h3>
+            <div class="row justify-content-center">
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/facebook.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/instagram.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/twitter.png') }}" />
+            </div>
+          </div>
+        </div>
+      </footer>
+{% endblock %} 

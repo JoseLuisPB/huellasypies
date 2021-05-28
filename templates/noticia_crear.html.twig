@@ -1,0 +1,44 @@
+{% extends 'panel_control.html.twig' %}
+{% block title %} Crear noticia {% endblock %}
+{% block main %}
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+    
+    <script>
+    tinymce.init({
+        selector: '#noticia_cuerpo'
+    });
+    </script>
+    {% form_theme formularioPasado 'bootstrap_4_layout.html.twig' %}
+    <main>
+        <div class="container">
+        <div class="d-flex flex-wrap flex-column align-content-center">
+            <h2 class="text-white text-center">Nueva noticia</h2>
+            {{ form_start(formularioPasado) }}
+                    <div class="row px-5">
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.titulo) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.cuerpo) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.foto) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.estado) }}
+                        </div>
+                        <div class="col-12 text-center">
+                            {{ form_row(formularioPasado.save) }}
+                        </div>
+                    </div>
+            {{ form_end(formularioPasado) }}
+            </div>
+        </div>
+    </main>
+	
+{% endblock %}

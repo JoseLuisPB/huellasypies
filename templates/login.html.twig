@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %} Login {% endblock %}
+{% block stylesheets %} 
+  <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+  <style> html{ background-color: #375e97;} </style>
+{% endblock %}  
+{% block main %}
+      <!-- Main -->
+      <main class="d-flex flex-column justify-content-center fondo_login">
+        <div class="container">
+          <div class="row justify-content-center my-5">
+            <div class="d-flex flex-column align-content-center align-items-center">
+              <h1 class="col-12 mt-1 text-center cabecera_login">Bienvenid@ a huellas y pies</h1>
+              <!-- Mensaje de error -->
+              {% if error %}
+                <div class="error_login">Las crecendiales no son las correctas, por favor inténtalo de nuevo</div>
+              {% endif %}
+              <!-- Formulario -->
+              <form action="{{ path('login') }}" method="post" class="d-flex flex-column justify-content-center align-items-center w-100 mt-2">
+                  <div class="form-group w-50">
+                  <input
+                      type="text"
+                      class="form-control"
+                      id="username" 
+                      name="_username" 
+                      value="{{ lastUsername }}"
+                      placeholder="Dirección de Email"
+                  />
+                  </div>
+                  <div class="form-group w-50">
+                  <input
+                      type="password"
+                      class="form-control"
+                      id="password"
+                      name="_password"
+                      placeholder="Contraseña"
+                  />
+                  </div>
+                  <input type="submit" class="btn btn-primary w-25 my-2" value="Acceder" />
+              </form>
+              <p class=" text-center col-12">¿Todavía no tienes una cuenta?<a href="{{path('nuevo_usuario')}}"> Regístrate</a></p>
+              <a class="text-center col-12" href="#">Recuperar contraseña</a>
+            </div>
+          </div>
+        </div><!-- Fin del contenedor-->
+      </main>
+{% endblock %}

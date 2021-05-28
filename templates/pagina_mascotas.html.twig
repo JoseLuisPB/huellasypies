@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block title %} Mascotas {% endblock %}
+{% block stylesheets %} 
+<link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+        <section>
+            <div class="row" >
+                <div class="col-12"><!-- Columna con los filtros-->
+                    <form action="{{path('filtrar_mascota')}}" method="POST" id="filtro">
+                        <div class="d-flex justify-content-center">
+                            <div class="mascotas_filtros">
+                                <label class="w-100 letra_filtro" for="antiguedad">Fecha</label>
+                                <select class="w-100 text-center" name="antiguedad" id="antiguedad" form="filtro">
+                                    <option value="nueva" {% if selects is defined and selects['antiguedad'] == 'nueva' %} selected {% endif %}>Nuevas</option>
+                                    <option value="antigua" {% if selects is defined and selects['antiguedad'] == 'antigua' %} selected {% endif %}>Antiguas</option>
+                                </select>
+                            </div>
+                            <div class="mascotas_filtros">
+                                <label class="w-100 letra_filtro" for="animal">Animal</label>
+                                <select class="w-100 text-center" name="animal" id="animal" form="filtro">
+                                    <option value="todas" {% if selects is defined and selects['animal'] == 'todas' %} selected {% endif %}>Todas</option>
+                                    <option value="perro" {% if selects is defined and selects['animal'] == 'perro' %} selected {% endif %}>Perros</option>
+                                    <option value="gato" {% if selects is defined and selects['animal'] == 'gato' %} selected {% endif %}>Gatos</option>
+                                </select>
+                            </div>
+                            <div class="mascotas_filtros">
+                                <label class="w-100 letra_filtro" for="provincia">Provincia</label>
+                                <select class="w-100 text-center" name="provincia" id="provincia" form="filtro">
+                                    <option value="todas" {% if selects is defined and selects['provincia'] == 'todas' %} selected {% endif %}>Todas</option>
+                                    <option value="Alicante" {% if selects is defined and selects['provincia'] == 'Alicante' %} selected {% endif %}>Alicante</option>
+                                    <option value="Valencia" {% if selects is defined and selects['provincia'] == 'Valencia' %} selected {% endif %}>Valencia</option>
+                                    <option value="Castellon" {% if selects is defined and selects['provincia'] == 'Castellon' %} selected {% endif %}>Castellón</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                        <div class="d-flex justify-content-center my-3">
+                            <input type="submit" class="boton_filtrar" id="filtrar" name="filtrar" value="Filtrar" />
+                        </div>
+                    </form>
+                    </div>
+                </div><!-- Fin columna con los filtros-->
+            </div><!-- Fin row-->
+        </section>
+        <section class="container">
+            <div class="row justify-content-center">
+                <div class="d-flex flex-wrap justify-content-center ">
+                {% if mascotas != null %}
+                {% for item in mascotas %}
+                <div>
+                    <a href="{{path('detalle_mascota',{'id' : item.id })}}"><!-- Inicio ficha-->
+                    <div class="card m-2 inicio_carta" style="width: 20rem;">
+                    <img class="card-img-top" src="{{ asset('imagenes/mascotas/') ~ item.foto }}" alt="{{item.nombre}}" style="height: 200px;">
+                        <div class="card-body p-0">
+                            <h5 class="card-title text-center">{{item.nombre}}</h5>
+                            <h5 class="card-title text-center">{{item.usuario.poblacion}}</h5>
+                            <a href="{{path('detalle_mascota',{'id' : item.id })}}" 
+                            {% if item.estado.id == 1 %}
+                            class="btn w-100 estado_disponible">{{item.estado.estado}}
+                            {% elseif item.estado.id == 2 %}
+                            class="btn w-100 estado_urgente">{{item.estado.estado}}
+                            {% elseif item.estado.id == 3 %}
+                            class="btn w-100 estado_tramitando">{{item.estado.estado}}
+                            {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                    </a><!-- Fin ficha-->
+                </div>
+                {% endfor %}
+                {% else %}
+                    <div class="no_encontrado">
+                    <p>No se ha encontrado ningún resultado</p>
+                    </div>
+                {% endif %}
+                </div>
+            </div><!-- Fin row-->
+        </section>
+
+        </div>
+    </main>
+{% endblock %}
+{% block footer %}
+      <footer class=" py-1">
+        <div class="d-flex flex-wrap justify-content-around">
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Contacta con nosotros</h3>
+            <h6>Avenida de Altea, 2</h6>
+            <h6>03530 La Nucía</h6>
+            <h6>Email: joseluis@huellasypies.daw</h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Mapa del sitio</h3>
+            <h6><a href="{{path('inicio')}}">Inicio</a></h6>
+            <h6><a href="{{path('pagina_mascotas')}}">Mascotas</a></h6>
+            <h6><a href="{{path('pagina_noticias')}}">Noticias</a></h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Síguenos en las RRSS</h3>
+            <div class="row justify-content-center">
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/facebook.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/instagram.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/twitter.png') }}" />
+            </div>
+          </div>
+        </div>
+      </footer>
+{% endblock %} 

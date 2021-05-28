@@ -1,0 +1,51 @@
+{% extends 'panel_control.html.twig' %}
+{% block title %} Lista noticias {% endblock %}
+{% block javascripts %}
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row acciones text-center align-content-center" style="min-height: 50px;">
+                        <div>
+                            <a href="{{path('crear_noticia')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                            <i class="fas fa-plus iconos_lista"></i><span class="ml-2">Nueva<span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% if noticias != null %}
+                <table class="table col-12">
+                <thead>
+                  <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Publicada</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    {% for item in noticias %}
+                    <tr>
+                        <th scope="row">{{ item.id }}</th>
+                        <td>{{ item.titulo }}</td>
+                        <td> {{ item.estado.estado }} </td>
+                        <td> {{ item.publicada|date("d/m/Y") }} </td>
+                        <td><a href="{{path('editar_noticia',{'id' : item.id})}}">Editar</td>
+                    </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+              {% else %}
+              <p class="text-center m-auto"> Todavía no has creado ninguna noticia</p>
+              {% endif %}
+            </div>
+        </div><!-- Fin del contenedor-->
+    </div>
+</main>
+{% endblock %}

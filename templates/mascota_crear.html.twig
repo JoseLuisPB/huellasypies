@@ -1,0 +1,61 @@
+{% extends 'panel_control.html.twig' %}
+{% block title %} Crear mascota {% endblock %}
+{% block main %}
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+    <script>
+    tinymce.init({
+        selector: 'textarea'
+    });
+    </script>
+    {% form_theme formularioPasado 'bootstrap_4_layout.html.twig' %}
+    <main>
+        <div class="container">
+        <div class=" d-flex flex-wrap flex-column align-content-center">
+            <h2 class="text-white text-center">Nueva mascota</h2>
+            {{ form_start(formularioPasado)}}
+                    <div class="row px-5">
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.nombre) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.tipo) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.foto) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.descripcion) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.requisitos) }}
+                        </div>
+                        <h3 class="col-12 text-center">Datos Extra</h3>
+                        <div class="col-12 d-flex flex-wrap justify-content-around">
+                            <div>
+                                {{ form_row(formularioPasado.vacunado) }}
+                            </div>
+                            <div>
+                                {{ form_row(formularioPasado.desparasitado) }}
+                            </div>
+                            <div>
+                                {{ form_row(formularioPasado.esterilizado) }}
+                            </div>
+                            <div>
+                                {{ form_row(formularioPasado.microchip) }}
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            {{ form_row(formularioPasado.save) }}
+                        </div>
+                    </div>
+            {{ form_end(formularioPasado) }}
+            </div>
+        </div>
+    </main>
+	
+{% endblock %}

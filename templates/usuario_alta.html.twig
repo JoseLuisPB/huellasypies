@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %} Alta usuario {% endblock %}
+{% block stylesheets %} 
+  <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+{% endblock %}
+{% block javascripts %}<!--<script src="{{ asset('js/usuario.js') }}" type="text/javascript"></script>-->{% endblock %}
+{% block main %}
+    {% form_theme formularioPasado 'bootstrap_4_layout.html.twig' %}
+    <main>
+        <div class="container">
+        <div class="d-flex flex-wrap flex-column align-content-center">
+            <h2 class="text-white text-center">Nuevo usuario</h2>
+            {{ form_start(formularioPasado)}}
+                    <div class="row px-5">
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.nombre) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.poblacion) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.provincia) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.email) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.password) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.telefono) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.rol) }}
+                        </div>
+                        <div id="input_direccion" class="col-12">
+                            {{ form_row(formularioPasado.direccion) }}
+                        </div>
+                        <div class="col-12 text-center">
+                            {{ form_row(formularioPasado.save) }}
+                        </div>
+                    </div>
+            {{ form_end(formularioPasado) }}
+            </div>
+        </div>
+    </main>
+	
+{% endblock %}

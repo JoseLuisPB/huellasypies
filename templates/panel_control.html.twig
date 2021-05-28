@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %} Panel de control {% endblock %}
+{% block stylesheets %} 
+    <link rel="stylesheet" href="{{ asset('css/panel_control.css') }}"/>
+{% endblock %}  
+{% block javascripts %}
+{% endblock %}
+{% block panel %}
+        <div class="container">
+            <div class="row cabecera_panel">
+                <div class="col-12">
+                    <div class="row text-center align-content-center" style="min-height: 50px;">
+                        <div>
+                            <a href="{{path('editar_usuario',{'id' : app.user.id })}}" class=" col-md-3 col-sm-3 iconos_panel">
+                            <i class="far fa-user"><span class="ml-2">Perfil<span></i></a>
+                        </div>
+                        <div>
+                            <a href="{{path('mascotas_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                            <i class="fas fa-paw"><span class="ml-2">Mascotas<span></i></a>
+                        </div>
+                        {% if is_granted('ROLE_PROTECTORA') %}
+                        <div>
+                            <a href="{{path('noticias_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                            <i class="far fa-newspaper"><span class="ml-2">Noticias<span></i></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div><!-- Fin del contenedor-->
+        <div class="container">
+            {% for message in app.flashes('success') %}
+            <div class="row flash_exito">
+                <div>
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+            <div class="row flash_error">
+                <div>
+                    {{ message }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

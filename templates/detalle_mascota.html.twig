@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% block title %} Detalle {{mascota.nombre}} {% endblock %}
+{% block stylesheets %} 
+<link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+        <section >
+            <div class="row py-3">
+            <img src="{{ asset('imagenes/mascotas/') ~ mascota.foto }}" class="col-md-7 col-sm-12" style="height: 365px;" />
+            <div class="col-md-5 col-sm-12"><!-- Datos principales -->
+              <div class="datos_principales"  style="height: 365px;">
+                <div class="pl-2">
+                    <h3>Datos de la mascota:</h3>
+                    <p>Nombre: {{mascota.nombre}}</p>
+                    <p>Localidad: {{mascota.usuario.poblacion}}</p>
+                    <p>Propietario: {{mascota.usuario.nombre}}</p>
+                    <p>Contacto: {{mascota.usuario.email}}</p>
+                    {% if mascota.vacunado == true %}
+                    <p>Vacunado: <span class=" si ">Sí</span></p>
+                    {% else %}
+                    <p>Vacunado: <span class=" no ">No</span></p>
+                    {% endif %}
+
+                    {% if mascota.desparasitado == true %}
+                    <p>Desparasitado: <span class=" si ">Sí</span></p>
+                    {% else %}
+                    <p>Desparasitado: <span class=" no ">No</span></p>
+                    {% endif %}
+
+                    {% if mascota.esterilizado == true %}
+                    <p>Esterilizado: <span class=" si ">Sí</span></p>
+                    {% else %}
+                    <p>Esterilizado: <span class=" no ">No</span></p>
+                    {% endif %}
+                    
+                    {% if mascota.microchip == true %}
+                    <p>Microchip: <span class=" si ">Sí</span></p>
+                    {% else %}
+                    <p>Microchip: <span class=" no ">No</span></p>
+                    {% endif %}
+                </div>
+              </div>
+            </div><!-- Fin datos principales -->
+            <div class="col-12 mt-3"><!-- Descripción -->
+              <div class="descripcion_mascota">
+                  <h3 >Descripción:</h3>
+                  {{mascota.descripcion| raw}}
+              </div>
+            </div>
+            <div class="col-12 mt-3"><!-- Requisitos -->
+              <div class="requisitos_mascota">
+                  <h3>Requisitos:</h3>
+                  {{mascota.requisitos| raw}}
+              </div>
+            </div>
+        </div>
+        </section>
+    </div>
+    </main>
+{% endblock %}
+{% block footer %}
+      <footer class=" py-1">
+        <div class="d-flex flex-wrap justify-content-around">
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Contacta con nosotros</h3>
+            <h6>Avenida de Altea, 2</h6>
+            <h6>03530 La Nucía</h6>
+            <h6>Email: joseluis@huellasypies.daw</h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Mapa del sitio</h3>
+            <h6><a href="{{path('inicio')}}">Inicio</a></h6>
+            <h6><a href="{{path('pagina_mascotas')}}">Mascotas</a></h6>
+            <h6><a href="{{path('pagina_noticias')}}">Noticias</a></h6>
+          </div>
+          <div class="p-2 footer_tamanyo_minimo">
+            <h3>Síguenos en las RRSS</h3>
+            <div class="row justify-content-center">
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/facebook.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/instagram.png') }}" />
+              <img class=" col-4 img-fluid footer_iconos" src="{{ asset('imagenes/web/twitter.png') }}" />
+            </div>
+          </div>
+        </div>
+      </footer>
+{% endblock %} 

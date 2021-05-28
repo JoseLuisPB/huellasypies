@@ -18,6 +18,23 @@
               </div>
             </blockquote>
           </div>
+          <!-- Sección con las nuevas mascotas -->
+          <section class="row my-2">
+            <div class="col-12">
+              <h1 class="pb-4">Nuevas mascotas</h1>
+              <div class="row d-flex justify-content-around">
+                {% for item in mascotas %}
+                  <div class="inicio_carta mb-3">
+                  <a href="{{path('detalle_mascota',{'id' : item.id })}}">
+                    <img class="card-img-top altura_carta" src="{{ asset('imagenes/mascotas/' ~ item.foto) }}" alt="{{item.nombre}}">
+
+                      </a>
+
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </section>
           <!-- Sección con la mision de la página web -->
           <section class="row">
             <div class="col-lg-6 col-sm-12 p-0">
@@ -33,31 +50,18 @@
               </div>
             </div>
           </section>
-          <!-- Sección con las nuevas mascotas -->
-          <section class="row nuevas_mascotas">
-            <div class="col-12">
-              <h1>Nuevas mascotas</h1>
-              <div class="row d-flex justify-content-around pb-2">
-                {% for item in mascotas %}
-                  <div class="card mt-2 inicio_carta">
-                    <img class="card-img-top" src="{{ asset('imagenes/mascotas/' ~ item.foto) }}" alt="{{item.nombre}}">
-                    <a href="{{path('detalle_mascota',{'id' : item.id })}}" class="inicio_btn_mascota w-100 text-center">{{item.nombre}}</a>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          </section>
         <!-- Seccíón que contiene las noticias -->
-          <section class="row nuevas_noticias">
+          <section class="row nuevas_noticias pt-3">
             <div class="col-12">
-              <h1>Últimas noticias</h1>
+              <h1 class="pb-4">Últimas noticias</h1>
               <div class ="row">
                 {% for item in noticias %}
-                  <article class="col-lg-6 col-md-6 col-sm-12">
+                <a href="{{path('detalle_noticia',{'id' : item.id })}}"> 
+                  <article class="col-lg-6 col-md-6 col-sm-12 pb-2">
                   <img class="img-fluid" src="{{ asset('imagenes/noticias/') ~ item.foto }}" style="max-height: 275px; width: 100%;" />
                   <h2 class="text-center inicio_titulos">{{ item.titulo }}</h2>
                   <p class="text-center inicio_texto">publicada por {{item.autor.nombre}} el {{ item.publicada|date("d/m/Y") }}</p>
-                  <p class="inicio_resumen">{{item.resumen}}<a class="leer_mas" href="{{path('detalle_noticia',{'id' : item.id })}}"> Leer más &gt;&gt;</a> </p>          
+                  <p class="inicio_resumen">{{item.resumen}} <span class="leer_mas">Leer más &gt;&gt;</span></p></a>          
                 </article>
                 {% endfor %}
               </div>
