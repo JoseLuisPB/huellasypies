@@ -1,0 +1,260 @@
+:root {
+
+    --texto: #231b12;
+    --texto-alternativo: #f4f4ef;
+    --caja: #fcfcf7;
+    --barra-nav:#3f6816;
+    --contenedor: #fff478;
+    --activo: #ffec5c;
+    --cuerpo: #b7b8b6;
+    --mision: #86ac41;
+    --disponible: #258039;
+    --urgente: #cf3721;
+    --tramitando: #f77604;
+}
+
+body{
+    background-color: var(--cuerpo);
+    color: var(--texto);
+    
+}
+
+.container{
+    background-color: var(--contenedor);
+}
+
+h1{
+    font-size: 64px;
+    line-height: 84px;
+}
+
+/* Barra de navegación */
+.nombre_web{
+    font-size: 2.5rem;
+    line-height: 1.2;
+    color:var(--texto-alternativo);
+}
+
+nav, footer{
+    background-color: var(--barra-nav);
+}
+
+nav ul li a{
+    color: var(--texto-alternativo);
+}
+
+.activo{
+    color:var(--activo) !important;
+}
+
+a{
+    color:var(--texto-alternativo);
+}
+
+a:hover{
+    text-decoration: none;
+    color:var(--texto-alternativo);
+}
+
+/* Colores toggle button */
+¡
+.custom-toggler.navbar-toggler {
+    border-color: #3f6816;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(244, 244, 239, 1)' stroke-width='5' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+/* Footer */
+
+footer{
+    color:var(--texto-alternativo);
+}
+
+footer a{
+    color:var(--texto-alternativo);
+}
+
+.footer_tamanyo_minimo{
+    min-width: 305px;
+}
+
+.footer_iconos{
+    max-height: 80px; 
+    max-width: 80px;
+}
+
+/* Inicio */
+
+.imagen_inicio{
+    max-height: 450px;
+}
+
+.cita_inicio{
+    background-color: var(--tramitando);
+    color: var(--texto-alternativo);
+}
+
+.cita_inicio h6{
+    font-size: 25px;
+}
+
+.cita_inicio p{
+    font-size:18px; 
+}
+
+.mision{
+    background-color: var(--mision);
+    
+}
+
+.mision h2{
+    text-align:center;
+    font-size:45px;
+}
+
+.altura_carta{
+    height:16rem; 
+}
+
+.inicio_titulos{
+    font-size: 30px;
+    line-height: 39px;
+    color:var(--texto);
+}
+
+.inicio_texto{
+    font-size: 20px;
+    line-height: 26px;
+    text-align:justify;
+    color:var(--texto) !important;
+}
+
+.inicio_resumen{
+    font-size: 18px;
+    line-height: 22px;
+    text-align:justify;
+    color:var(--texto) !important;
+}
+
+.inicio_btn_mascota{
+    color:var(--letras);
+    padding: 5px;
+    font-size: 25px;
+}
+
+.leer_mas{
+    color:var(--barra-nav) !important;
+}
+
+.leer_mas:hover{
+    color:#b4b4b4;
+}
+
+/* Página mascotas */
+
+.no_encontrado{
+    display:flex;
+    align-items: center;
+    font-size:25px;
+    height:357px;
+}
+
+.mascotas_filtros{
+    padding: 5px;
+    margin-right: 15px;
+}
+
+.letra_filtro{
+    font-size:22px;
+    color:var(--texto);
+}
+
+.boton_filtrar{
+    border-radius: 15px;
+    padding: 5px 30px;
+    background-color: var(--barra-nav);
+    color: var(--texto-alternativo);
+}
+
+.inicio_carta{
+    background-color: var(--cuerpo);
+    width: 19rem;
+}
+
+.inicio_carta h5{
+    color:var(--texto);
+}
+
+.estado_disponible, .estado_disponible:hover{
+    background-color: var(--disponible);
+    color: var(--texto-alternativo);
+}
+
+.estado_urgente, .estado_urgente:hover{
+    background-color: var(--urgente);
+    color: var(--texto-alternativo);
+}
+
+.estado_tramitando, .estado_tramitando:hover{
+    background-color: var(--tramitando);
+    color: var(--texto-alternativo);
+}
+
+/* Detalles mascota */
+
+.datos_principales{
+    background-color: var(--texto-alternativo);
+}
+
+.caja_datos_principales{
+    background-color: var(--caja);
+}
+
+.descripcion_mascota{
+    background-color: var(--texto-alternativo);
+}
+
+.requisitos_mascota{
+    background-color: var(--texto-alternativo);
+}
+
+.si{
+    color:green;
+}
+
+.no{
+    color:red;
+}
+
+/* Detalles noticia */
+.imagen_detalle_noticia{
+    max-height: 400px; 
+    width: 100%;
+}
+
+/* Pantalla login */
+
+.fondo_login{
+    background-color:  #375e97;
+}
+.error_login{
+    color: red; 
+    font-weight:bold;
+}
+
+/* Media queries */
+
+@media(max-width: 767px){
+    h1{
+        font-size: 45px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .cabecera_login{
+        font-size: 30px;
+    }
+}

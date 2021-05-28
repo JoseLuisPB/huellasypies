@@ -1,0 +1,84 @@
+:root{
+    --color-barra-nav: #3f6816;
+    --color-body: #c5beba;
+    --color-panel:#375e97;
+    --panel-iconos-lista: #cdcdc0;
+    --color-contenedor: #d5d2d2;
+    --color-letras: #f4f4ef;
+}
+
+body{
+    background-color: var(--color-body);
+}
+
+.container{
+    background-color: var(--color-contenedor);
+}
+
+.cabecera_panel{
+    background-color: var(--color-panel);
+    
+}
+.cabecera_panel a, .cabecera_panel a:hover{
+    color:white;
+}
+
+.nombre_web{
+    color:var(--color-letras);
+}
+
+nav{
+    background-color: var(--color-barra-nav);
+}
+
+nav ul li a{
+    color:var(--color-letras);
+}
+
+/* Colores toggle button */
+¡
+.custom-toggler.navbar-toggler {
+    border-color: var(--color-barra-nav);
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url(
+"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(244, 244, 239, 1)' stroke-width='5' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.activo{
+    color:#ffec5c !important;
+}
+
+a, a:hover{
+    text-decoration: none;
+    color:var(--color-letras);
+}
+
+.acciones, .acciones a, .acciones a:hover{
+    background-color: #336b87;
+    background-color: #68829e;
+    color:white;
+}
+
+.flash_exito{
+    background-color: #89da59;
+    color:black;
+    font-size: 15px;
+    padding: 5px 1px;
+}
+
+.flash_error{
+    background-color: red;
+    color:black;
+    font-size: 15px;
+    padding: 5px 1px;
+}
+
+.iconos_panel{
+    font-size: 20px;
+}
+
+.iconos_lista{
+    color: var(--panel-iconos-lista);
+}
