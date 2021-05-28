@@ -24,6 +24,7 @@ security:
             logout: 
                 path: /logout 
                 target: /
+            access_denied_handler: App\Seguridad\AccessDeniedHandler
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
@@ -39,3 +40,13 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/noticia, roles: ROLE_PROTECTORA }
+        - { path: ^/lista_aprobar, roles: ROLE_PROTECTORA }
+        - { path: ^/aprobar_mascota, roles: ROLE_PROTECTORA }
+        - { path: ^/rechazar_mascota, roles: ROLE_PROTECTORA }
+        - { path: ^/mascota, roles: ROLE_PARTICULAR }
+        - { path: ^/usuario, roles: ROLE_PARTICULAR }
+        - { path: ^/panel_control, roles: ROLE_PARTICULAR }
+
+    role_hierarchy:
+        ROLE_PROTECTORA: ROLE_PARTICULAR
