@@ -1,44 +1,62 @@
 :root{
-    --color-barra-nav: #3f6816;
-    --color-body: #c5beba;
-    --color-panel:#375e97;
-    --panel-iconos-lista: #cdcdc0;
-    --color-contenedor: #d5d2d2;
-    --color-letras: #f4f4ef;
+    --barra-nav: #3f6816;
+    --texto-alternativo: #f4f4ef;
+    --cuerpo: #c5beba;
+    --panel:#5F1669;
+    --acciones: #A002B5;
+    --panel-iconos-lista: #58d76d;
+    --contenedor: #d5d2d2;
+    --formulario: #cdab81;
+    --exito:#4fa919;
+    --error:#ff6500;
+    --activo: #ffec5c;
+    --editar: #009318;
+    --disponible: green;
+    --urgente: #f424f8;
+    --tramitando: orange;
+    --adoptada:blue;
+    --pendiente: red;
 }
 
 body{
-    background-color: var(--color-body);
+    background-color: var(--cuerpo);
 }
 
 .container{
-    background-color: var(--color-contenedor);
+    background-color: var(--contenedor);
 }
 
 .cabecera_panel{
-    background-color: var(--color-panel);
+    background-color: var(--panel);
     
 }
 .cabecera_panel a, .cabecera_panel a:hover{
-    color:white;
+    color:var(--texto-alternativo);
 }
 
 .nombre_web{
-    color:var(--color-letras);
+    color:var(--texto-alternativo);
 }
 
 nav{
-    background-color: var(--color-barra-nav);
+    background-color: var(--barra-nav);
 }
 
 nav ul li a{
-    color:var(--color-letras);
+    color:var(--texto-alternativo);
+}
+
+.usuario_conectado{
+    color:var(--texto-alternativo);
+    font-size: 14px;
+    margin:0;
+    padding-bottom:5px;
 }
 
 /* Colores toggle button */
 ¡
 .custom-toggler.navbar-toggler {
-    border-color: var(--color-barra-nav);
+    border-color: var(--barra-nav);
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -47,32 +65,33 @@ nav ul li a{
 }
 
 .activo{
-    color:#ffec5c !important;
+    color:var(--activo) !important;
 }
 
 a, a:hover{
     text-decoration: none;
-    color:var(--color-letras);
+    color:var(--texto-alternativo);
 }
 
 .acciones, .acciones a, .acciones a:hover{
-    background-color: #336b87;
-    background-color: #68829e;
-    color:white;
+    background-color: var(--acciones);
+    color:var(--texto-alternativo);
 }
 
 .flash_exito{
-    background-color: #89da59;
-    color:black;
+    background-color: var(--exito);
+    color:var(--texto-alternativo);
+    font-weight: bold;
     font-size: 15px;
-    padding: 5px 1px;
+    padding: 5px 15px;
 }
 
 .flash_error{
-    background-color: red;
-    color:black;
+    background-color: var(--error);
+    color:var(--texto-alternativo);
+    font-weight: bold;
     font-size: 15px;
-    padding: 5px 1px;
+    padding: 5px 15px;
 }
 
 .iconos_panel{
@@ -81,4 +100,80 @@ a, a:hover{
 
 .iconos_lista{
     color: var(--panel-iconos-lista);
+}
+
+.pdte_aprobar{
+    font-weight: bold;
+    background-color: var(--pendiente);
+    color:var(--texto-alternativo);
+    padding: 0 10px;
+    border-radius: 10px;
+}
+
+/* Formularios */
+
+.formulario{
+    background-color: var(--formulario);
+}
+
+.btn_guardar{
+    color: var(--texto-alternativo);
+    background-color: var(--barra-nav);
+    border-color: var(--barra-nav);
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+.btn:hover{
+    color: var(--texto-alternativo);
+}
+
+/* Colores tabla */
+.table thead th{
+    background-color:#B3B6B7 !important;
+}
+
+tr:nth-child(odd) {
+    background-color: #ECF0F1;
+}
+
+tr:nth-child(even) {
+    background-color: #F4F6F7;
+}
+
+.editar{
+        color:var(--editar);
+        font-size: 20px;
+}
+
+/* Estados mascota */
+.pendiente{
+    color: var(--pendiente);
+    font-weight: bold;
+}
+
+.disponible{
+    color: var(--barra-nav);
+    font-weight: bold;
+}
+
+.urgente{
+    color: var(--urgente);
+    font-weight: bold;
+}
+
+.tramitando{
+    color: var(--tramitando);
+    font-weight: bold;
+}
+
+.adoptada{
+    color: var(--adoptada);
+    font-weight: bold;
+}
+
+/* Acceso denegado */
+.acceso_denegado{
+    font-size: 25px;
+    font-weight: bold;
 }

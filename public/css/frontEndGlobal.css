@@ -13,6 +13,7 @@
     --tramitando: #f77604;
     --login: #81715e;
     --alta: #cdab81;
+    --filtro: #A002B5;
 }
 
 body{
@@ -162,6 +163,15 @@ footer a{
     color:#b4b4b4;
 }
 
+/* Noticias */
+.no_noticia{
+    display:flex;
+    align-items: center;
+    font-size:25px;
+    height:385px;
+    margin: auto;
+}
+
 /* Página mascotas */
 
 .no_encontrado{
@@ -171,6 +181,9 @@ footer a{
     height:357px;
 }
 
+.filtro{
+    background-color: var(--login);
+}
 .mascotas_filtros{
     padding: 5px;
     margin-right: 15px;
@@ -189,12 +202,12 @@ footer a{
 }
 
 .inicio_carta{
-    background-color: var(--cuerpo);
+    background-color: var(--login);
     width: 19rem;
 }
 
 .inicio_carta h5{
-    color:var(--texto);
+    color:var(--texto-alternativo);
 }
 
 .estado_disponible, .estado_disponible:hover{
