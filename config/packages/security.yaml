@@ -45,6 +45,7 @@ security:
         - { path: ^/aprobar_mascota, roles: ROLE_PROTECTORA }
         - { path: ^/rechazar_mascota, roles: ROLE_PROTECTORA }
         - { path: ^/mascota, roles: ROLE_PARTICULAR }
+        - { path: ^/usuario/nuevo, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usuario, roles: ROLE_PARTICULAR }
         - { path: ^/panel_control, roles: ROLE_PARTICULAR }
 
