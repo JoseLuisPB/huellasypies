@@ -2,12 +2,12 @@
 {% block title %} Login {% endblock %}
 {% block stylesheets %} 
   <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
-  <style> html{ background-color: #375e97;} </style>
+  <style> html{ background-color: #81715e;} </style>
 {% endblock %}  
 {% block main %}
       <!-- Main -->
       <main class="d-flex flex-column justify-content-center fondo_login">
-        <div class="container">
+        <div class="container fondo_login">
           <div class="row justify-content-center my-5">
             <div class="d-flex flex-column align-content-center align-items-center">
               <h1 class="col-12 mt-1 text-center cabecera_login">Bienvenid@ a huellas y pies</h1>
@@ -36,7 +36,7 @@
                       placeholder="Contraseña"
                   />
                   </div>
-                  <input type="submit" class="btn btn-primary w-25 my-2" value="Acceder" />
+                  <input type="submit" class="btn btn_login w-25 my-2" value="Acceder" />
               </form>
               <p class=" text-center col-12">¿Todavía no tienes una cuenta?<a href="{{path('nuevo_usuario')}}"> Regístrate</a></p>
               <a class="text-center col-12" href="#">Recuperar contraseña</a>

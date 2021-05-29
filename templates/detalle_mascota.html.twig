@@ -8,51 +8,61 @@
         <div class="container">
         <section >
             <div class="row py-3">
-            <img src="{{ asset('imagenes/mascotas/') ~ mascota.foto }}" class="col-md-7 col-sm-12" style="height: 365px;" />
-            <div class="col-md-5 col-sm-12"><!-- Datos principales -->
-              <div class="datos_principales"  style="height: 365px;">
+              <img src="{{ asset('imagenes/mascotas/') ~ mascota.foto }}" class="col-md-7 col-sm-12" style="height: 365px;" />
+              <div class="col-md-5 col-sm-12"><!-- Datos principales -->
+                <div class="caja"  style="height: 365px;">
+                  <div class="cabecera_caja">
+                    <h3 class="pl-2"><b>Datos de la mascota</b></h3>
+                </div>
                 <div class="pl-2">
-                    <h3>Datos de la mascota:</h3>
-                    <p>Nombre: {{mascota.nombre}}</p>
-                    <p>Localidad: {{mascota.usuario.poblacion}}</p>
-                    <p>Propietario: {{mascota.usuario.nombre}}</p>
-                    <p>Contacto: {{mascota.usuario.email}}</p>
+                    <p><b>Nombre:</b> {{mascota.nombre}}</p>
+                    <p><b>Localidad:</b> {{mascota.usuario.poblacion}}</p>
+                    <p><b>Propietario:</b> {{mascota.usuario.nombre}}</p>
+                    <p><b>Contacto:</b> {{mascota.usuario.email}}</p>
                     {% if mascota.vacunado == true %}
-                    <p>Vacunado: <span class=" si ">Sí</span></p>
+                    <p><b>Vacunado:<span class=" si "> Sí</span></b></p>
                     {% else %}
-                    <p>Vacunado: <span class=" no ">No</span></p>
+                    <p><b>Vacunado:<span class=" no "> No</span></b></p>
                     {% endif %}
 
                     {% if mascota.desparasitado == true %}
-                    <p>Desparasitado: <span class=" si ">Sí</span></p>
+                    <p><b>Desparasitado:<span class=" si "> Sí</span></b></p>
                     {% else %}
-                    <p>Desparasitado: <span class=" no ">No</span></p>
+                    <p><b>Desparasitado:<span class=" no "> No</span></b> </p>
                     {% endif %}
 
                     {% if mascota.esterilizado == true %}
-                    <p>Esterilizado: <span class=" si ">Sí</span></p>
+                    <p><b>Esterilizado:<span class=" si "> Sí</span></b> </p>
                     {% else %}
-                    <p>Esterilizado: <span class=" no ">No</span></p>
+                    <p><b>Esterilizado:<span class=" no "> No</span></b> </p>
                     {% endif %}
                     
                     {% if mascota.microchip == true %}
-                    <p>Microchip: <span class=" si ">Sí</span></p>
+                    <p><b>Microchip:<span class=" si "> Sí</span></b> </p>
                     {% else %}
-                    <p>Microchip: <span class=" no ">No</span></p>
+                    <p><b>Microchip:<span class=" no "> No</span></b> </p>
                     {% endif %}
                 </div>
               </div>
             </div><!-- Fin datos principales -->
             <div class="col-12 mt-3"><!-- Descripción -->
-              <div class="descripcion_mascota">
-                  <h3 >Descripción:</h3>
-                  {{mascota.descripcion| raw}}
+              <div class="caja">
+                <div class="cabecera_caja px-2">
+                    <h3 >Descripción</h3>
+                </div>
+                <div class="p-2">
+                {{mascota.descripcion| raw}}
+                </div>
               </div>
             </div>
             <div class="col-12 mt-3"><!-- Requisitos -->
-              <div class="requisitos_mascota">
-                  <h3>Requisitos:</h3>
-                  {{mascota.requisitos| raw}}
+              <div class="caja">
+                <div class="cabecera_caja px-2">
+                    <h3 >Requisitos</h3>
+                </div>
+                <div class="p-2">
+                {{mascota.requisitos| raw}}
+                </div>
               </div>
             </div>
         </div>

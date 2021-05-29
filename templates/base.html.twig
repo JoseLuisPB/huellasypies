@@ -34,6 +34,9 @@
             <!-- Texto barra de navegación -->
             <a href="{{path('inicio')}}">
                 <h1 class="nombre_web ml-5">Huellas y pies</h1>
+                {% if app.user%}
+                <p class="usuario_conectado ml-5">Bienvenid@ {{app.user.nombre}} </p>
+                {% endif %}
             </a>
             <!-- Botón de toggle -->
             <button
@@ -120,6 +123,7 @@
             </ul>
         </div>
     </nav>
+
 
         <!-- Bloque con las opciones del panel de control -->
         {% block panel %}{% endblock %}
