@@ -4,13 +4,15 @@
     --texto-alternativo: #f4f4ef;
     --caja: #fcfcf7;
     --barra-nav:#3f6816;
-    --contenedor: #fff478;
+    --contenedor: #fff79e;
     --activo: #ffec5c;
     --cuerpo: #b7b8b6;
     --mision: #86ac41;
     --disponible: #258039;
     --urgente: #cf3721;
     --tramitando: #f77604;
+    --login: #81715e;
+    --alta: #cdab81;
 }
 
 body{
@@ -54,6 +56,13 @@ a{
 a:hover{
     text-decoration: none;
     color:var(--texto-alternativo);
+}
+
+.usuario_conectado{
+    color:var(--texto-alternativo);
+    font-size: 14px;
+    margin:0;
+    padding-bottom:5px;
 }
 
 /* Colores toggle button */
@@ -101,7 +110,7 @@ footer a{
     font-size: 25px;
 }
 
-.cita_inicio p{
+.cita_inicio p, p{
     font-size:18px; 
 }
 
@@ -205,11 +214,12 @@ footer a{
 
 /* Detalles mascota */
 
-.datos_principales{
-    background-color: var(--texto-alternativo);
+.cabecera_caja{
+    background-color: var(--cuerpo);
+    color: black;
 }
 
-.caja_datos_principales{
+.caja{
     background-color: var(--caja);
 }
 
@@ -238,12 +248,34 @@ footer a{
 /* Pantalla login */
 
 .fondo_login{
-    background-color:  #375e97;
+    background-color:  var(--login);
+}
+
+.cabecera_login{
+    color: var(--texto-alternativo);
 }
 .error_login{
-    color: red; 
+    color: #ff8100; 
     font-weight:bold;
+    font-size: 18px;
 }
+
+.btn_login{
+    color: var(--texto-alternativo);
+    background-color: var(--barra-nav);
+    border-color: var(--barra-nav);
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+.btn:hover{
+    color: var(--texto-alternativo);
+}
+
+.form_alta{
+    background-color: var(--alta);
+}
+
 
 /* Media queries */
 
