@@ -288,6 +288,14 @@ footer a{
     background-color: var(--alta);
 }
 
+.btn_guardar{
+    color: var(--texto-alternativo);
+    background-color: var(--barra-nav);
+    border-color: var(--barra-nav);
+    font-size: 20px;
+    border-radius: 30px;
+}
+
 
 /* Media queries */
 
