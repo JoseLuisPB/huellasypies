@@ -93,10 +93,12 @@
                     or (app.request.attributes.get('_route') == 'mascotas_usuario')
                     or (app.request.attributes.get('_route') == 'crear_mascota') 
                     or (app.request.attributes.get('_route') == 'editar_mascota')
-                    or (app.request.attributes.get('_route') == 'lista_aprobar')     
+                    or (app.request.attributes.get('_route') == 'lista_aprobar')
+                    or (app.request.attributes.get('_route') == 'aprobar_mascota')      
                     or (app.request.attributes.get('_route') == 'noticias_usuario')
                     or (app.request.attributes.get('_route') == 'crear_noticia') 
-                    or (app.request.attributes.get('_route') == 'editar_noticia') %}
+                    or (app.request.attributes.get('_route') == 'editar_noticia')
+                    %}
                         <a class="nav-link activo" href="{{path('panel_control')}}">
                     {% else %}
                         <a class="nav-link" href="{{path('panel_control')}}">

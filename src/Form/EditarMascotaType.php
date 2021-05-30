@@ -35,7 +35,7 @@ class EditarMascotaType extends AbstractType
                 'label' => 'Estado',))
             ->add('foto', TextType::class,['label' => 'Foto actual','attr' => ['readonly' => true],])
             ->add('nueva_foto', FileType::class,array('required' => false, 'mapped'=> false))
-            ->add('descripcion', TextareaType::class, array('label' => 'Descripción', 'required' => false, 'attr' =>['rows' => '10',  'wrap'=>'hard']))
+            ->add('descripcion', TextareaType::class, array('label' => 'Descripción', 'required' => false, 'attr' =>['rows' => '20',  'wrap'=>'hard']))
             ->add('requisitos', TextareaType::class, array('label' => 'Requisitos (No es obligatorio)', 'required' => false, 'attr' =>['rows' => '10',  'wrap'=>'hard']))
             ->add('vacunado', CheckboxType::class, ['label' => 'Vacunado', 'required' => false])
             ->add('desparasitado', CheckboxType::class, ['label' => 'Desparasitado', 'required' => false])
