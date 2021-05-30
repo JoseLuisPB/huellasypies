@@ -36,11 +36,13 @@ class UsuarioController extends AbstractController
                 # Rellenamos los campos de base de datos que no dependen del formulario
                 $nuevoUsuario->setActivo(true);
                 $nuevoUsuario-> setReiniciarPassword(false);
+                # Fecha actual
                 $fecha = date('Y-m-d');
                 $nuevoUsuario->setFechaAlta($fecha);
+                # mail y login
                 $email = $nuevoUsuario->getEmail();
                 $nuevoUsuario->setLogin($email);
-                
+
                 # Codificamos el password que nos ha enviado el formulario
                 $passwordCodificado = $encoder->encodePassword($nuevoUsuario, $form['password']->getData());
                 # Cambiamos el valor valor antiguo del password que tiene el objeto por el nuevo que acabamos de codificar 
@@ -58,7 +60,6 @@ class UsuarioController extends AbstractController
             } 
 
         }
-
         # Se devuelve la vista que contiene el formulario -> Esto sucede cuando el formulario no se ha enviado o no es válido
         return $this->render('usuario_alta.html.twig', array('formularioPasado' => $form->createView()));
 
@@ -97,7 +98,8 @@ class UsuarioController extends AbstractController
         return $this->render('usuario_editar.html.twig', array('formularioPasado' => $form->createView()));
         }
         else{
-            return $this->redirectToRoute('panel_control'); 
+            $this->addFlash('error','No puedes editar el perfil de otros usuarios');
+                    return $this->redirectToRoute('panel_control'); 
         }
         
     }
