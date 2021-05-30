@@ -11,16 +11,35 @@
                 <div class="col-12">
                     <div class="row text-center align-content-center" style="min-height: 50px;">
                         <div>
+                        {% if app.request.attributes.get('_route') == 'editar_usuario' %}
+                            <a href="{{path('editar_usuario',{'id' : app.user.id })}}" class=" col-md-3 col-sm-3 iconos_panel activo">
+                        {% else %}    
                             <a href="{{path('editar_usuario',{'id' : app.user.id })}}" class=" col-md-3 col-sm-3 iconos_panel">
-                            <i class="far fa-user"><span class="ml-2">Perfil<span></i></a>
+                        {% endif %}
+                            <i class="fas fa-user-edit"><span class="ml-2">Perfil<span></i></a>
                         </div>
                         <div>
-                            <a href="{{path('mascotas_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                        {% if app.request.attributes.get('_route') == 'mascotas_usuario'
+                        or (app.request.attributes.get('_route') == 'crear_mascota')
+                        or (app.request.attributes.get('_route') == 'editar_mascota')
+                        or (app.request.attributes.get('_route') == 'lista_aprobar')  
+                        %}
+                            <a href="{{path('mascotas_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel activo">
+                        {% else %}
+                        <a href="{{path('mascotas_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                        {% endif %}  
                             <i class="fas fa-paw"><span class="ml-2">Mascotas<span></i></a>
                         </div>
                         {% if is_granted('ROLE_PROTECTORA') %}
                         <div>
+                        {% if app.request.attributes.get('_route') == 'noticias_usuario'
+                        or (app.request.attributes.get('_route') == 'crear_noticia')
+                        or (app.request.attributes.get('_route') == 'editar_noticia') 
+                        %}
+                            <a href="{{path('noticias_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel activo">
+                        {% else %}
                             <a href="{{path('noticias_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel">
+                        {% endif %}
                             <i class="far fa-newspaper"><span class="ml-2">Noticias<span></i></a>
                         </div>
                         {% endif %}

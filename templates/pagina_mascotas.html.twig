@@ -7,7 +7,7 @@
     <main>
         <div class="container">
         <section>
-            <div class="row" >
+            <div class="row filtro" >
                 <div class="col-12"><!-- Columna con los filtros-->
                     <form action="{{path('filtrar_mascota')}}" method="POST" id="filtro">
                         <div class="d-flex justify-content-center">
@@ -73,7 +73,7 @@
                 {% endfor %}
                 {% else %}
                     <div class="no_encontrado">
-                    <p>No se ha encontrado ningún resultado</p>
+                        <p>No se ha encontrado ningún resultado</p>
                     </div>
                 {% endif %}
                 </div>

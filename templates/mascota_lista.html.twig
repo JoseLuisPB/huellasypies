@@ -15,7 +15,7 @@
                         {% if is_granted('ROLE_PROTECTORA') %}
                         <div>
                             <a href="{{path('lista_aprobar')}}" class=" col-md-3 col-sm-3 iconos_panel">
-                            <i class="fas fa-check iconos_lista"></i><span class="ml-2">Aprobar<span class="ml-2 text-warning">{% if pendientes|length > 0 %}<span>{{pendientes|length}}</span>{% endif %}</a>
+                            <i class="fas fa-check iconos_lista"></i><span class="ml-2">Pendiente aprobar<span class="ml-2">{% if pendientes|length > 0 %}<span class="pdte_aprobar">{{pendientes|length}}</span>{% endif %}</a>
                         </div>
                         {% endif %}
                     </div>
@@ -23,10 +23,10 @@
             </div>
             <div class="row">
                 {% if mascotas != null %}
-                <table class="table table-striped col-12">
+                <table class="table col-12">
                 <thead>
                   <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Estado</th>
                     <th scope="col"></th>
@@ -40,20 +40,20 @@
                         <td>{{ item.nombre }}</td>
                         {% if item.aprobada == true %}
                             {% if item.estado == "Disponible" %}
-                            <td style="color: green">
+                            <td class="disponible">
                             {% elseif item.estado == "Urgente" %}
-                            <td style="color: yellow">
+                            <td class="urgente">
                             {% elseif item.estado == "Tramitando" %}
-                            <td style="color: orange">
+                            <td class="tramitando">
                             {% else %}
-                            <td style="color: blue">
+                            <td class="adoptada">
                             {% endif %}
                             {{item.estado}}
                         {% else %}
-                        <td style="color:red;"> Pendiente de aprobación
+                        <td class="pendiente"> Pendiente
                         {% endif %}
                         </td>
-                        <td><a href="{{path('editar_mascota',{'id' : item.id})}}">Editar</td>
+                        <td><a href="{{path('editar_mascota',{'id' : item.id})}}"><i class="far fa-edit editar"></i></a></td>
                     </tr>
                     {% endfor %}
                   

@@ -1,36 +1,29 @@
 {% extends 'panel_control.html.twig' %}
-{% block title %} Crear noticia {% endblock %}
+{% block title %} Editar usuario {% endblock %}
 {% block main %}
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            bsCustomFileInput.init()
-        })
-    </script>
-    
-    <script>
-    tinymce.init({
-        selector: '#noticia_cuerpo'
-    });
-    </script>
     {% form_theme formularioPasado 'bootstrap_4_layout.html.twig' %}
-    <main>
-        <div class="container formulario">
+    <div class="container formulario">
         <div class="d-flex flex-wrap flex-column align-content-center">
-            <h2 class="text-center">Nueva noticia</h2>
+        <h2 class="text-center">Editar perfil</h2>
             {{ form_start(formularioPasado) }}
                     <div class="row px-5">
                         <div class="col-12">
-                            {{ form_row(formularioPasado.titulo) }}
+                            {{ form_row(formularioPasado.nombre) }}
                         </div>
                         <div class="col-12">
-                            {{ form_row(formularioPasado.cuerpo) }}
+                            {{ form_row(formularioPasado.poblacion) }}
                         </div>
                         <div class="col-12">
-                            {{ form_row(formularioPasado.foto) }}
+                            {{ form_row(formularioPasado.provincia) }}
                         </div>
                         <div class="col-12">
-                            {{ form_row(formularioPasado.estado) }}
+                            {{ form_row(formularioPasado.email) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(formularioPasado.telefono) }}
+                        </div>
+                        <div id="input_direccion" class="col-12">
+                            {{ form_row(formularioPasado.direccion) }}
                         </div>
                         <div class="col-12 text-center">
                             {{ form_row(formularioPasado.save, {'attr': {'class': 'btn_guardar'}}) }}
@@ -38,7 +31,5 @@
                     </div>
             {{ form_end(formularioPasado) }}
             </div>
-        </div>
-    </main>
-	
+    </div>
 {% endblock %}

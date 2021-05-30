@@ -9,6 +9,7 @@
         <section>
             <h1 class="text-center">Hemeroteca</h1>
             <div class ="row col-12 ">
+                {% if noticias != null %}
                 {% for elemento in noticias %}
                     <article class="col-lg-6 col-md-6 col-sm-12 pb-3">
                     <a href="{{path('detalle_noticia',{'id' : elemento.id })}}">
@@ -19,6 +20,12 @@
                     </a>
                     </article>
                 {% endfor %}
+                {% else %}
+                    <div class="no_noticia">
+                        <p>No se ha encontrado ninguna noticia</p>
+                    </div>
+                {% endif %}
+            </div>
         </section>
     </div>
     </main>

@@ -33,9 +33,13 @@
                     <tr>
                         <th scope="row">{{ item.id }}</th>
                         <td>{{ item.titulo }}</td>
-                        <td> {{ item.estado.estado }} </td>
+                        {% if item.estado.estado == "publicada" %}
+                        <td class="disponible"> {{ item.estado.estado }} </td>
+                        {% else %}
+                        <td class="pendiente"> {{ item.estado.estado }} </td>
+                        {% endif %}
                         <td> {{ item.publicada|date("d/m/Y") }} </td>
-                        <td><a href="{{path('editar_noticia',{'id' : item.id})}}">Editar</td>
+                        <td><a href="{{path('editar_noticia',{'id' : item.id})}}"><i class="far fa-edit editar"></i></a></td>
                     </tr>
                     {% endfor %}
                   

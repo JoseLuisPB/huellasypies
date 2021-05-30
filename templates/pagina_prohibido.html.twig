@@ -2,12 +2,19 @@
 {% block title %} Acceso denegado {% endblock %}
 {% block stylesheets %} 
     <link rel="stylesheet" href="{{ asset('css/panel_control.css') }}"/>
+    <style> html, body, .container{ background-color: #fff79e}</style>
 {% endblock %}  
 {% block javascripts %}
 {% endblock %}
 {% block panel %}
-    <div class="ml-5">
-        <h5>403 - Acceso prohibido</h5>
-        <h5>No tienes permisos para realizar esta acción</h5>
+    <div class="container">
+        <div class="row mt-5">
+                <div class="m-auto">
+                    <img class="img-fluid" src="{{ asset('imagenes/web/denegado.png') }}">
+                    <p class="text-center acceso_denegado">403 - Acceso denegado</p>
+                    <p class="text-center acceso_denegado">No tienes permisos</p>
+                </div>
+            </div>
     </div>
+    
 {% endblock %}

@@ -14,9 +14,9 @@
     </script>
     {% form_theme formularioPasado 'bootstrap_4_layout.html.twig' %}
     <main>
-        <div class="container">
+        <div class="container formulario">
         <div class="d-flex flex-wrap flex-column align-content-center">
-            <h2 class="text-white text-center">Nuevo usuario</h2>
+            <h2 class="text-center">Nuevo usuario</h2>
             {{ form_start(formularioPasado)}}
                     <div class="row px-5">
                         <div class="col-12">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            {{ form_row(formularioPasado.save) }}
+                            {{ form_row(formularioPasado.save, {'attr': {'class': 'btn_guardar'}}) }}
                         </div>
                     </div>
             {{ form_end(formularioPasado) }}

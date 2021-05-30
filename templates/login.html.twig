@@ -2,7 +2,7 @@
 {% block title %} Login {% endblock %}
 {% block stylesheets %} 
   <link rel="stylesheet" href="{{ asset('css/frontEndGlobal.css') }}"/>
-  <style> html{ background-color: #81715e;} </style>
+  <style> html{ background-color: #81715e;} body{background-color: #81715e;} </style>
 {% endblock %}  
 {% block main %}
       <!-- Main -->
@@ -39,7 +39,9 @@
                   <input type="submit" class="btn btn_login w-25 my-2" value="Acceder" />
               </form>
               <p class=" text-center col-12">¿Todavía no tienes una cuenta?<a href="{{path('nuevo_usuario')}}"> Regístrate</a></p>
+              <!--
               <a class="text-center col-12" href="#">Recuperar contraseña</a>
+              -->
             </div>
           </div>
         </div><!-- Fin del contenedor-->
