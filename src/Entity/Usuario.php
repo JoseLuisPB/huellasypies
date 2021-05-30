@@ -24,25 +24,21 @@ class Usuario implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $poblacion;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $provincia;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $password;
 
@@ -53,19 +49,16 @@ class Usuario implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email( message = "El email '{{ value }}' no es válido")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $telefono;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="El campo no puede estar en blanco")
      */
     private $fecha_alta;
 
