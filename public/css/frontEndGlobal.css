@@ -4,16 +4,16 @@
     --texto-alternativo: #f4f4ef;
     --caja: #fcfcf7;
     --barra-nav:#3f6816;
-    --contenedor: #fff79e;
+    --contenedor: #86ac41;
     --activo: #ffec5c;
     --cuerpo: #b7b8b6;
-    --mision: #86ac41;
+    --mision: #4b7447;
     --disponible: #258039;
     --urgente: #cf3721;
     --tramitando: #f77604;
     --login: #81715e;
     --alta: #cdab81;
-    --filtro: #A002B5;
+    --filtro: #d5c3aa;
 }
 
 body{
@@ -29,6 +29,7 @@ body{
 h1{
     font-size: 64px;
     line-height: 84px;
+    color:var(--texto-alternativo);
 }
 
 /* Barra de navegación */
@@ -123,6 +124,7 @@ footer a{
 .mision h2{
     text-align:center;
     font-size:45px;
+    color:var(--texto-alternativo)
 }
 
 .altura_carta{
@@ -132,7 +134,7 @@ footer a{
 .inicio_titulos{
     font-size: 30px;
     line-height: 39px;
-    color:var(--texto);
+    color:var(--texto-alternativo);
 }
 
 .inicio_texto{
@@ -155,12 +157,9 @@ footer a{
     font-size: 25px;
 }
 
-.leer_mas{
-    color:var(--barra-nav) !important;
-}
-
-.leer_mas:hover{
-    color:#b4b4b4;
+.leer_mas, .leer_mas:hover{
+    color:var(--texto-alternativo) !important;
+    font-weight: bold;
 }
 
 /* Noticias */
@@ -182,7 +181,7 @@ footer a{
 }
 
 .filtro{
-    background-color: var(--login);
+    background-color: var(--filtro);
 }
 .mascotas_filtros{
     padding: 5px;

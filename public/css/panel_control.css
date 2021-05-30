@@ -1,5 +1,6 @@
 :root{
     --barra-nav: #3f6816;
+    --texto: black;
     --texto-alternativo: #f4f4ef;
     --cuerpo: #c5beba;
     --panel:#5F1669;
@@ -144,6 +145,15 @@ tr:nth-child(even) {
 .editar{
         color:var(--editar);
         font-size: 20px;
+}
+
+.ver_ficha, .ver_ficha:hover{
+    color: var(--texto);
+}
+
+.aprobar, .aprobar:hover{
+    color: var(--barra-nav);
+    font-size: 20px;
 }
 
 /* Estados mascota */
