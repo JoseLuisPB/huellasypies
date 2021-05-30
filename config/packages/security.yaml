@@ -20,6 +20,7 @@ security:
                 provider: user_provider 
                 login_path: login 
                 check_path: login
+                default_target_path: panel_control
             # Indicamos que al salir de la aplicación (ruta logout), se dirija a la página raiz (/)
             logout: 
                 path: /logout 
