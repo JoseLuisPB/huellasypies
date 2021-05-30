@@ -31,7 +31,7 @@ class EditarUsuarioType extends AbstractType
                 ], 'label' => 'Provincia'])
             ->add('email', EmailType::class)
             ->add('telefono', TextType::class)
-            ->add('direccion', TextType::class, array('label' => 'Dirección de la página web'))
+            ->add('direccion', TextType::class, array('label' => 'Dirección de la página web', 'required' => false))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))->getForm();
     }
 }

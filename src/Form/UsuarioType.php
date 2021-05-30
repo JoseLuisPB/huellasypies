@@ -44,7 +44,7 @@ class UsuarioType extends AbstractType
                     'Particular' => 'ROLE_PARTICULAR',
                     'Protectora' => 'ROLE_PROTECTORA',
                 ], 'label' => 'Soy'])
-            ->add('direccion', TextType::class, array('label' => 'Dirección de la página web'))
+            ->add('direccion', TextType::class, array('label' => 'Dirección de la página web', 'required' => false))
             ->add('save', SubmitType::class, array('label' => 'Enviar'))->getForm();
     }
 }
