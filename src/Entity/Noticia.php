@@ -47,12 +47,12 @@ class Noticia
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $resumen;
+    private $publicada;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
-    private $publicada;
+    private $resumen;
 
     
     public function getId(): ?int
@@ -120,18 +120,6 @@ class Noticia
         return $this;
     }
 
-    public function getResumen(): ?string
-    {
-        return $this->resumen;
-    }
-
-    public function setResumen(string $resumen): self
-    {
-        $this->resumen = $resumen;
-
-        return $this;
-    }
-
     public function getPublicada(): ?string
     {
         return $this->publicada;
@@ -140,6 +128,18 @@ class Noticia
     public function setPublicada(string $publicada): self
     {
         $this->publicada = $publicada;
+
+        return $this;
+    }
+
+    public function getResumen(): ?string
+    {
+        return $this->resumen;
+    }
+
+    public function setResumen(string $resumen): self
+    {
+        $this->resumen = $resumen;
 
         return $this;
     }

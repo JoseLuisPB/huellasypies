@@ -84,7 +84,7 @@ class NoticiaController extends AbstractController
                         return $this->redirectToRoute('noticias_usuario');
                     }
                     catch(\Exception $e){
-                        $this->addFlash('error','La mascota no se ha podido crear');
+                        $this->addFlash('error','La noticia no se ha podido crear');
                         return $this->render('noticia_crear.html.twig', array('formularioPasado' => $form->createView()));
                     } 
         
