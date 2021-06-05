@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\UsuarioType;
 use App\Form\EditarUsuarioType;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UsuarioController extends AbstractController
@@ -16,7 +18,7 @@ class UsuarioController extends AbstractController
     /** 
      * * @Route("/usuario/nuevo", name="nuevo_usuario") 
      * */
-    public function nuevo_usuario(Request $request, UserPasswordEncoderInterface $encoder)
+    public function nuevo_usuario(MailerInterface $mailer,Request $request, UserPasswordEncoderInterface $encoder)
     {
         # Se crea un objeto de la clase Usuario, que será la que utilizaremos para guardar los datos en la BD
         $nuevoUsuario = new Usuario();
@@ -49,11 +51,25 @@ class UsuarioController extends AbstractController
                 $nuevoUsuario->setPassword($passwordCodificado);
 
                 # Guardado en la base de datos
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist( $nuevoUsuario);
-                $entityManager->flush();
-                # Carga de la pantalla inicio
-                return $this->redirectToRoute('inicio');
+                //$entityManager = $this->getDoctrine()->getManager();
+                //$entityManager->persist( $nuevoUsuario);
+                //$entityManager->flush();
+
+                # Si el usuario se guarda en la base de datos le enviamos un email
+                $email = (new Email())
+                ->from('no-reply@huellasypies.daw')
+                ->to($nuevoUsuario->getEmail())
+                ->subject('Bienvenido a huellas y pies')
+                ->html("
+                    <h2>Hola {$nuevoUsuario->getNombre()}, Bienvenid@ a huellas y pies </h2>
+                    <p>Esperamos que tu mascota encuentre el mejor hogar posible y que tu estancia en nuestra web sea lo más agradable posible</p>
+                    <p>Atentamente el equipo de huellasypies</p>
+                ");
+
+                $mailer->send(($email));
+
+                # Devolvemos al usuario a la pantalla de login
+                return $this->redirectToRoute('login');
             }
             catch(\Exception $e){
                 return $this->render('login.html.twig', array('formularioPasado' => $form->createView()));

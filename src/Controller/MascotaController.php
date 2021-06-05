@@ -16,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class MascotaController extends AbstractController
 {
@@ -50,6 +52,7 @@ class MascotaController extends AbstractController
                 $repositorio_usuario = $this->getDoctrine()->getRepository(Usuario::class);
                 $usuario = $repositorio_usuario->find($duenyo);
                 $nuevaMascota->setUsuario($usuario);
+                $nuevaMascota->setRechazada(false);
 
                 # Si el creador es un particular ponemos la mascota en estado modificado para que sea aprobada.
                 if($usuario->getRol() == 'ROLE_PROTECTORA'){
@@ -122,7 +125,7 @@ class MascotaController extends AbstractController
                         $repositorio_estado_mascota = $this->getDoctrine()->getRepository(EstadoMascota::class);
                         $estadoMascota = $repositorio_estado_mascota->find($estado);
                         $datosMascota->setEstado($estadoMascota);
-
+                        $datosMascota->setRechazada(false);
 
                         # Dueño de la mascota
                         $duenyo = $this->getUser()->getId();
@@ -138,7 +141,11 @@ class MascotaController extends AbstractController
                             $datosMascota->setAprobada(false);
                         }
                         
-    
+                        # Si la mascota tiene el estado adoptada se actualiza la fecha de adopción.
+                        if($estadoMascota->getEstado() == "Adoptada"){
+                            $fecha = date('Y-m-d');
+                            $datosMascota->setFechaAdopcion($fecha);
+                        }
                         $imagen = $form->get('nueva_foto')->getData();
         
                             if ($imagen){
@@ -251,48 +258,113 @@ class MascotaController extends AbstractController
     /** 
      * * @Route("/aprobar_mascota/{id}", name="aprobar_mascota") 
      * */
-    public function aprobar_mascota($id)
+    public function aprobar_mascota( MailerInterface $mailer,$id)
     {
         $repositorio_mascota = $this->getDoctrine()->getRepository(Mascota::class);
         $mascota = $repositorio_mascota->find($id);
 
-        $mascota->setAprobada(true);
-        # Guardado en la base de datos
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist( $mascota);
-        $entityManager->flush();
+        try{
+            $mascota->setAprobada(true);
+            # Guardado en la base de datos
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist( $mascota);
+            $entityManager->flush();
 
-        /**
-         * @var MascotaRepository
-         */
-        $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
-        $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+            /* Enviar email de que la mascota está aprobada */
+            $email = (new Email())
+                ->from('no-reply@huellasypies.daw')
+                ->to($mascota->getUsuario()->getEmail())
+                ->subject('Mascota aprobada')
+                ->html("
+                    <h2>Hola {$mascota->getUsuario()->getNombre()}</h2>
+                    <p>Tu mascota {$mascota->getNombre()} ha sido aprobada y a partir de ahora aparecerá en la lista de mascotas</p>
+                    <p>Atentamente el equipo de huellasypies</p>
+                ");
 
-        return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+                $mailer->send(($email));
+
+
+            /**
+             * @var MascotaRepository
+             */
+            $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
+            $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+            $this->addFlash('success','Mascota aprobada');
+            return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+        }
+        catch(\Exception $e){
+            # Enviar el mensaje flash para mostarlo en el panel de control
+            $this->addFlash('error','La mascota no se ha podido aprobar');
+            /**
+            * @var MascotaRepository
+            */
+            $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
+            $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+
+            return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+        } 
+        
+    }
+
+    /** 
+     * * @Route("/pagina_rechazar/{id}", name="pagina_rechazar") 
+     * */
+
+    public function pagina_rechazar($id){
+        return $this->render('pagina_rechazar.html.twig', array('id' => $id));
     }
 
     /** 
      * * @Route("/rechazar_mascota/{id}", name="rechazar_mascota") 
      * */
     
-    public function rechazar_mascota($id)
+    public function rechazar_mascota(MailerInterface $mailer, Request $request,$id)
     {
         $repositorio_mascota = $this->getDoctrine()->getRepository(Mascota::class);
         $mascota = $repositorio_mascota->find($id);
 
-        $mascota->setAprobada(false);
-        # Guardado en la base de datos
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist( $mascota);
-        $entityManager->flush();
+        try{
+            $mascota->setAprobada(false);
+            $mascota->setRechazada(true);
+            $mensaje = $request->request->get('rechazo');
+            # Guardado en la base de datos
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist( $mascota);
+            $entityManager->flush();
 
-        /**
-         * @var MascotaRepository
-         */
-        $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
-        $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+            /* Enviar email de que la mascota está aprobada */
+            $email = (new Email())
+                ->from('no-reply@huellasypies.daw')
+                ->to($mascota->getUsuario()->getEmail())
+                ->subject('Mascota rechazada')
+                ->html("
+                    <h2>Hola {$mascota->getUsuario()->getNombre()}</h2>
+                    <p>Tu mascota {$mascota->getNombre()} ha sido rechazada, a continuación te indicamos los motivos de este rechazo</p>
+                    <p>$mensaje</p>
+                    <p>Atentamente el equipo de huellasypies</p>
+                ");
 
-        return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+                $mailer->send(($email));
+
+            /**
+             * @var MascotaRepository
+             */
+            $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
+            $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+            $this->addFlash('success','La mascota ha sido rechazada');
+            return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+        }
+        catch(\Exception $e){
+            # Enviar el mensaje flash para mostarlo en el panel de control
+            $this->addFlash('error','La mascota no se ha podido rechazar');
+            /**
+            * @var MascotaRepository
+            */
+            $mascotas_pendiente_aprobar = $this->getDoctrine()->getRepository(Mascota::class);
+            $mascotas = $mascotas_pendiente_aprobar->pendiente_aprobar();
+
+            return $this->render('mascota_aprobar.html.twig', array('mascotas' => $mascotas));
+        }
     }
     
     /** 

@@ -91,6 +91,11 @@ class Mascota
      */
     private $aprobada;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $rechazada;
+
 
     public function getId(): ?int
     {
@@ -261,6 +266,18 @@ class Mascota
     public function setAprobada(bool $aprobada): self
     {
         $this->aprobada = $aprobada;
+
+        return $this;
+    }
+
+    public function getRechazada(): ?bool
+    {
+        return $this->rechazada;
+    }
+
+    public function setRechazada(bool $rechazada): self
+    {
+        $this->rechazada = $rechazada;
 
         return $this;
     }
