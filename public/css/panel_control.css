@@ -84,7 +84,7 @@ a, a:hover{
     color:var(--texto-alternativo);
     font-weight: bold;
     font-size: 15px;
-    padding: 5px 15px;
+    padding: 10px 15px;
 }
 
 .flash_error{
@@ -92,7 +92,15 @@ a, a:hover{
     color:var(--texto-alternativo);
     font-weight: bold;
     font-size: 15px;
-    padding: 5px 15px;
+    padding: 10px 15px;
+}
+
+.dialogo{
+    position:fixed;
+    right: 0;
+    bottom:0;
+    margin:10px;
+    cursor: pointer;
 }
 
 .iconos_panel{
@@ -109,6 +117,14 @@ a, a:hover{
     color:var(--texto-alternativo);
     padding: 0 10px;
     border-radius: 10px;
+}
+
+.btn_login{
+    color: var(--texto-alternativo);
+    background-color: var(--barra-nav);
+    border-color: var(--barra-nav);
+    font-size: 20px;
+    border-radius: 30px;
 }
 
 /* Formularios */
@@ -152,8 +168,19 @@ tr:nth-child(even) {
 }
 
 .aprobar, .aprobar:hover{
-    color: var(--barra-nav);
-    font-size: 20px;
+    color: var(--texto-alternativo);
+    font-size: 16px;
+    background-color: var(--exito);
+    padding: 5px;
+    border-radius: 18px;
+}
+
+.rechazar, .rechazar:hover{
+    color: var(--texto-alternativo);
+    font-size: 16px;
+    background-color: var(--pendiente);
+    padding: 5px;
+    border-radius: 18px;
 }
 
 /* Estados mascota */
