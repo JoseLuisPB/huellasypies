@@ -50,7 +50,11 @@
                             {% endif %}
                             {{item.estado}}
                         {% else %}
-                        <td class="pendiente"> Pendiente
+                            {% if item.rechazada == false %}
+                                <td class="pendiente"> Pendiente
+                            {% else %}
+                                <td class="pendiente"> Rechazada
+                            {% endif %}
                         {% endif %}
                         </td>
                         <td><a href="{{path('editar_mascota',{'id' : item.id})}}"><i class="far fa-edit editar"></i></a></td>

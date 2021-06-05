@@ -24,9 +24,9 @@
         <link rel="icon" type="image/png" href="{{ asset('imagenes/web/favicon.png') }}" />
         <title>{% block title %} Inicio {% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascript %}{% endblock %}
         <!-- Tiny MCE -->
-        <script src="https://cdn.tiny.cloud/1/gjefjh3zotl9ly4c9kkd364vehmama5ut997pb4p2aqk0i3z/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="https://cdn.tiny.cloud/1/qeo33ofpbdohkd8pf8gay64z75d1ct3zla4ndniyi8amsmal/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     </head>
     <body>
         <!-- Barra de navegación -->
@@ -57,7 +57,7 @@
                 {% if app.request.attributes.get('_route') == 'inicio' %}
                 <a class="nav-link activo" aria-current="page" href="{{path('inicio')}}">
                 {% else %}
-                <a class="nav-link" aria-current="page" href="{{path('inicio')}}">
+                <a class="nav-link" href="{{path('inicio')}}">
                 {% endif %}
                     <i class="fas fa-home"><span class="pl-1">Inicio</span></i>
                     </a>
@@ -67,7 +67,7 @@
                 {% if app.request.attributes.get('_route') == 'pagina_mascotas'
                 or (app.request.attributes.get('_route') == 'detalle_mascota') 
                 or (app.request.attributes.get('_route') == 'filtrar_mascota') %}
-                <a class="nav-link activo" href="{{path('pagina_mascotas')}}">
+                <a class="nav-link activo" aria-current="page" href="{{path('pagina_mascotas')}}">
                 {% else %}
                 <a class="nav-link" href="{{path('pagina_mascotas')}}">
                 {% endif %}
@@ -78,7 +78,7 @@
                 <li class="nav-item text-center">
                 {% if (app.request.attributes.get('_route') == 'pagina_noticias')
                 or (app.request.attributes.get('_route') == 'detalle_noticia') %}
-                <a class="nav-link activo" href="{{path('pagina_noticias')}}">
+                <a class="nav-link activo" aria-current="page" href="{{path('pagina_noticias')}}">
                 {% else %}
                 <a class="nav-link" href="{{path('pagina_noticias')}}">
                 {% endif %}
@@ -94,12 +94,14 @@
                     or (app.request.attributes.get('_route') == 'crear_mascota') 
                     or (app.request.attributes.get('_route') == 'editar_mascota')
                     or (app.request.attributes.get('_route') == 'lista_aprobar')
-                    or (app.request.attributes.get('_route') == 'aprobar_mascota')      
+                    or (app.request.attributes.get('_route') == 'aprobar_mascota')
+                    or (app.request.attributes.get('_route') == 'rechazar_mascota')       
                     or (app.request.attributes.get('_route') == 'noticias_usuario')
                     or (app.request.attributes.get('_route') == 'crear_noticia') 
                     or (app.request.attributes.get('_route') == 'editar_noticia')
+                    or (app.request.attributes.get('_route') == 'pagina_rechazar')  
                     %}
-                        <a class="nav-link activo" href="{{path('panel_control')}}">
+                        <a class="nav-link activo" aria-current="page" href="{{path('panel_control')}}">
                     {% else %}
                         <a class="nav-link" href="{{path('panel_control')}}">
                     {% endif %}
@@ -115,7 +117,7 @@
                 {% else %}
                 <li class="nav-item text-center">
                 {% if (app.request.attributes.get('_route') == 'login') %}
-                    <a class="nav-link activo"  href="{{path('login')}}">
+                    <a class="nav-link activo" aria-current="page"  href="{{path('login')}}">
                 {% else %}
                     <a class="nav-link"  href="{{path('login')}}">
                 {% endif %}   

@@ -3,7 +3,8 @@
 {% block stylesheets %} 
     <link rel="stylesheet" href="{{ asset('css/panel_control.css') }}"/>
 {% endblock %}  
-{% block javascripts %}
+{% block javascript %}
+    <script type = "text/javascript" src="{{ asset('js/funciones.js') }}"></script> 
 {% endblock %}
 {% block panel %}
         <div class="container">
@@ -22,7 +23,10 @@
                         {% if app.request.attributes.get('_route') == 'mascotas_usuario'
                         or (app.request.attributes.get('_route') == 'crear_mascota')
                         or (app.request.attributes.get('_route') == 'editar_mascota')
-                        or (app.request.attributes.get('_route') == 'lista_aprobar')  
+                        or (app.request.attributes.get('_route') == 'lista_aprobar')
+                        or (app.request.attributes.get('_route') == 'aprobar_mascota')
+                        or (app.request.attributes.get('_route') == 'rechazar_mascota')   
+                        or (app.request.attributes.get('_route') == 'pagina_rechazar')  
                         %}
                             <a href="{{path('mascotas_usuario')}}" class=" col-md-3 col-sm-3 iconos_panel activo">
                         {% else %}
@@ -47,20 +51,15 @@
                 </div>
             </div>
         </div><!-- Fin del contenedor-->
-        <div class="container">
+        <!-- Mensajes -->
             {% for message in app.flashes('success') %}
-            <div class="row flash_exito">
-                <div>
-                    {{ message }}
-                </div>
+            <div class="flash_exito dialogo cerrar_msg">
+                {{ message }}
             </div>
             {% endfor %}
             {% for message in app.flashes('error') %}
-            <div class="row flash_error">
-                <div>
-                    {{ message }}
-                </div>
+            <div class="flash_error dialogo cerrar_msg">
+                {{ message }}
             </div>
             {% endfor %}
-        </div>
 {% endblock %}

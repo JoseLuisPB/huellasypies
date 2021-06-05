@@ -14,6 +14,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,7 +24,8 @@
                         <th scope="row">{{ item.id }}</th>
                         <td>{{ item.nombre }}</td>
                         <td><a class="ver_ficha" href="{{path('detalle_mascota',{'id' : item.id})}}">Ver ficha</a></td>
-                        <td><a class="aprobar" href="{{path('aprobar_mascota',{'id' : item.id})}}"><i class="fas fa-check aprobar">Aprobar</i></a></td>
+                        <td><a href="{{path('aprobar_mascota',{'id' : item.id})}}"><span class="aprobar">Aprobar</span></a></td>
+                        <td><a href="{{path('pagina_rechazar',{'id' : item.id})}}"><span class="rechazar">Rechazar</span></a></td>
                     </tr>
                     {% endfor %}
                   
