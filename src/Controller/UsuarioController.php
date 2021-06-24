@@ -51,9 +51,9 @@ class UsuarioController extends AbstractController
                 $nuevoUsuario->setPassword($passwordCodificado);
 
                 # Guardado en la base de datos
-                //$entityManager = $this->getDoctrine()->getManager();
-                //$entityManager->persist( $nuevoUsuario);
-                //$entityManager->flush();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist( $nuevoUsuario);
+                $entityManager->flush();
 
                 # Si el usuario se guarda en la base de datos le enviamos un email
                 $email = (new Email())
